@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">ZXingLibrary</string>
+    <string name="app_name">Lector Barras</string>
     <string name="showing_code_in_fragment">Showing code in fragment</string>
-    <string name="scan_qr_code">SCAN QR CODE</string>
+    <string name="scan_qr_code">SCAN</string>
     <string name="name">Name</string>
     <string name="empty">---</string>
     <string name="site_name">Site Name</string>

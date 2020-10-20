@@ -1,33 +1,17 @@
-package com.jr.lectorbarras
-import android.Manifest;
-import android.Manifest.permission.CAMERA
-import android.Manifest.permission_group.CAMERA
+package com.jr.lectorbarras.ui
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.media.MediaRecorder.VideoSource.CAMERA
-import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.util.SparseArray
-import android.view.SurfaceHolder
-import android.view.SurfaceView
-import android.view.View
-import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.util.isEmpty
 import com.google.zxing.integration.android.IntentIntegrator
+import com.jr.lectorbarras.R
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_resultado.*
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.IOException
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,14 +27,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        txtName = findViewById(R.id.name)
-        txtSiteName = findViewById(R.id.site_name)
+       // txtName = findViewById(R.id.name)
+        //txtSiteName = findViewById(R.id.site_name)
 
         btnScan = findViewById(R.id.btnScan)
         btnScan!!.setOnClickListener { performAction() }
 
         qrScanIntegrator = IntentIntegrator(this)
         qrScanIntegrator?.setOrientationLocked(false)
+
+        btnbuscar.setOnClickListener {
+
+        }
 
 
     }
@@ -74,14 +62,29 @@ class MainActivity : AppCompatActivity() {
                     val obj = JSONObject(result.contents)
 
                     // Show values in UI.
-                    txtName?.text = obj.getString("name")
-                    txtSiteName?.text = obj.getString("site_name")
+                    //tvstock?.text = obj.getString("Stock")
+                    //tvprecio?.text = obj.getString("precio")
+                    //tvprecio?.text = obj.getString("articulo")
+
+                    val intent = Intent(this, ResultadoActivity::class.java)
+                    intent.putExtra("articulo" , obj.getString("Stock"))
+                    intent.putExtra("precio" ,obj.getString("precio"))
+                    intent.putExtra("articulo" ,obj.getString("articulo"))
+                    startActivity(intent)
+
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
-                    txtName?.text = result.contents
-                    // Data not in the expected format. So, whole object as toast message.
-                    Toast.makeText(this, result.contents, Toast.LENGTH_LONG).show()
+                    val obj = JSONObject(result.contents)
+
+                    val intent = Intent(this, ResultadoActivity::class.java)
+                   // val intent = Intent(this, ResultadoActivity::class.java)
+                    intent.putExtra("stock" , obj.getString("stock"))
+                    intent.putExtra("precio" ,obj.getString("precio"))
+                    intent.putExtra("articulo" ,obj.getString("articulo"))
+                    //intent.putExtra("articulo" , result.contents)
+                    startActivity(intent)
+
                 }
 
             }
