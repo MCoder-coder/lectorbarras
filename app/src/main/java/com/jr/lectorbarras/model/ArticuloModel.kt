@@ -1,4 +1,7 @@
 package com.jr.lectorbarras.model
 
-class ArticuloModel {
-}
+data class ArticuloModel(
+    val id : Int,
+    val precio: Int,
+    val stock: Int
+)

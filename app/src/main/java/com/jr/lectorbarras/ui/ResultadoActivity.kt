@@ -18,13 +18,14 @@ class ResultadoActivity : AppCompatActivity() {
         val precio = intent.getStringExtra("precio")
         val stock = intent.getStringExtra("stock")
         val txtarticulo = findViewById<TextView>(R.id.idArticulo)
-
-        txtarticulo.text = articulo
-        tvprecio.text = precio
-        tvstock.text = stock
+        val result = intent.getStringExtra("result")
+        txtarticulo.text = result
+       // tvprecio.text = precio
+        //tvstock.text = stock
 
         btnModificarStock.setOnClickListener {
             val intent = Intent(this , ModificarStockActivity::class.java)
+            intent.putExtra("stock" , stock)
             startActivity(intent)
 
         }

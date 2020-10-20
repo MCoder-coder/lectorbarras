@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.jr.lectorbarras.R
+import com.jr.lectorbarras.model.ArticuloModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_resultado.*
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     internal var btnScan: Button? = null
     internal var qrScanIntegrator: IntentIntegrator? = null
 
+    private var articuloModel: ArticuloModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,14 +77,14 @@ class MainActivity : AppCompatActivity() {
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
-                    val obj = JSONObject(result.contents)
+                   // val obj = JSONObject(result.contents)
 
                     val intent = Intent(this, ResultadoActivity::class.java)
                    // val intent = Intent(this, ResultadoActivity::class.java)
-                    intent.putExtra("stock" , obj.getString("stock"))
-                    intent.putExtra("precio" ,obj.getString("precio"))
-                    intent.putExtra("articulo" ,obj.getString("articulo"))
-                    //intent.putExtra("articulo" , result.contents)
+                    //intent.putExtra("stock" , obj.getString("stock"))
+                    //intent.putExtra("precio" ,obj.getString("precio"))
+                    //intent.putExtra("articulo" ,obj.getString("articulo"))
+                    intent.putExtra("result" , result.contents)
                     startActivity(intent)
 
                 }
