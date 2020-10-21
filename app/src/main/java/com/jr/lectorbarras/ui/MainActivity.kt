@@ -7,10 +7,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.model.ArticuloModel
+import com.jr.lectorbarras.data.model.ArticuloModel
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_resultado.*
 import org.json.JSONException
 import org.json.JSONObject
 

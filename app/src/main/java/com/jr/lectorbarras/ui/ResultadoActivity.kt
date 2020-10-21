@@ -25,7 +25,7 @@ class ResultadoActivity : AppCompatActivity() {
 
         btnModificarStock.setOnClickListener {
             val intent = Intent(this , ModificarStockActivity::class.java)
-            intent.putExtra("stock" , stock)
+            intent.putExtra("stock" , result)
             startActivity(intent)
 
         }

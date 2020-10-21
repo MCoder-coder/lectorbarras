@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ResultadoActivity">
+    tools:context=".ui.ResultadoActivity"
+    android:layout_margin="10dp"
+    >
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="24dp"
         android:text="Articulo: "
-        android:textStyle="bold"
         android:textSize="30sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="200dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/idArticulo"
@@ -41,12 +42,12 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="15dp"
         android:text="Precio: "
         android:textSize="30sp"
@@ -77,12 +78,12 @@
 
     <TextView
         android:id="@+id/tex3"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="15dp"
         android:text="Stock: "
         android:textSize="30sp"

@@ -15,6 +15,6 @@ class ModificarStockActivity : AppCompatActivity() {
         val stock = intent.getStringExtra("stock")
 
         tvCantidadUnidades.text = stock
-        editText.setText(stock)
+      //  editText.setText(stock)
     }
 }

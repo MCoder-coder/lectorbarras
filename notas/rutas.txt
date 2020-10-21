@@ -1,0 +1,18 @@
+
+Ruta Login:
+-----------
+	Parametros:
+		- email
+		- password
+
+Ej:
+http://www.nanod10.com.ar/stock-api/login.php?email=nanod10@hotmail.com&password=123
+
+
+
+Rutas articulos:
+----------------
+ej:
+http://www.nanod10.com.ar/stock-api/barcode.php?hash=3df76a7a956c427db7c76ccc8f2bce7e&codigo=7798311170019
+
+https://android.jlelse.eu/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
