@@ -60,6 +60,11 @@ class LoginActivity : AppCompatActivity() {
                     if (response.code() == 200) {
                         Toast.makeText(this@LoginActivity, "Login success!", Toast.LENGTH_SHORT)
                             .show()
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        //intent.flags =
+                           // Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this@LoginActivity, "Login failed!", Toast.LENGTH_SHORT)
                             .show()
