@@ -9,11 +9,11 @@ interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("/login.php")
+    @POST("login.php")
     fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ):Call<LoginResponse>
+    ):retrofit2.Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
     //@HTTP(method = "GET", path = "/login.php?", hasBody = true)

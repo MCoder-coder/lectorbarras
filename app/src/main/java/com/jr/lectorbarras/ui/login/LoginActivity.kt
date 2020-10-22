@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
             val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterface::class.java)
             val signInInfo = SignInBody(email = email, password = password)
             Log.i("tag", signInInfo.toString())
-            retIn.signin(signInInfo).enqueue(object : Callback<ResponseBody> {
+            retIn.login(email, password).enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     Toast.makeText(
                         this@LoginActivity,
