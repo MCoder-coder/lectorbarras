@@ -8,12 +8,14 @@ import retrofit2.http.*
 interface ApiInterface {
 
 
+
     @FormUrlEncoded
     @POST("login.php")
     fun login(
+
         @Field("email") email: String,
         @Field("password") password: String
-    ):retrofit2.Call<ResponseBody>
+    ):retrofit2.Call<SignInBody>
 
     @Headers("Content-Type:application/json")
     //@HTTP(method = "GET", path = "/login.php?", hasBody = true)

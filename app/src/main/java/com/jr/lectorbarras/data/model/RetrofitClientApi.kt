@@ -20,11 +20,13 @@ class RetrofitClientApi {
 
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
-            Log.i("intercep:: " ,this.level.toString())
+
+
         }
 
         val client: OkHttpClient = OkHttpClient.Builder().apply {
             this.addInterceptor(interceptor)
+
         }.build()
         fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder()
@@ -35,7 +37,7 @@ class RetrofitClientApi {
         }
     }
 
-   /*private val okHttpClient = OkHttpClient.Builder()
+  /* private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor { chain ->
             val original = chain.request()
             Log.i("original: " , original.method.toString())
