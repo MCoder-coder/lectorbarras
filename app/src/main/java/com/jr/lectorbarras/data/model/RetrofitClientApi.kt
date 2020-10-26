@@ -25,6 +25,7 @@ class RetrofitClientApi {
         }
 
         val client: OkHttpClient = OkHttpClient.Builder().apply {
+
             this.addInterceptor(interceptor)
 
         }.build()

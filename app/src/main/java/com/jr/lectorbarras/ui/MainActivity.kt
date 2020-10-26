@@ -7,11 +7,18 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ArticuloModel
+import com.jr.lectorbarras.data.model.ApiInterface
+import com.jr.lectorbarras.data.model.ArticuloResponse
+import com.jr.lectorbarras.data.model.LoginResponse
+import com.jr.lectorbarras.data.model.RetrofitClientApi
 
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +29,22 @@ class MainActivity : AppCompatActivity() {
     internal var btnScan: Button? = null
     internal var qrScanIntegrator: IntentIntegrator? = null
 
-    private var articuloModel: ArticuloModel? = null
+    private var articuloModel: ArticuloResponse? = null
+
+
+    val id_articulo : String = ""
+    val cod_articulo: String = ""
+    val nombre: String = ""
+    val precio_lista_1: String = ""
+    val precio_lista_2: String = ""
+    val precio_lista_3: String = ""
+    val codbarras: String = ""
+    val stock : String = ""
+    val price_updated_at: String = ""
+    val mensaje = ""
+    val estado = ""
+    val hash : String = "3df76a7a956c427db7c76ccc8f2bce7e"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +52,40 @@ class MainActivity : AppCompatActivity() {
 
        // txtName = findViewById(R.id.name)
         //txtSiteName = findViewById(R.id.site_name)
+        val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterface::class.java)
+        retIn.articuloResponse(hash,estado, mensaje, cod_articulo, id_articulo, nombre, precio_lista_1, precio_lista_2, precio_lista_3, codbarras, stock, price_updated_at ).enqueue(object : Callback<ArticuloResponse> {
+            override fun onResponse(
+                call: Call<ArticuloResponse>,
+                response: Response<ArticuloResponse>
 
+            ) {
+                if (response.body()?.estado == "ok") {
+                    Toast.makeText(this@MainActivity,response.body()?.mensaje, Toast.LENGTH_SHORT).show()
+                    intent.putExtra("cod_Articulo" , cod_articulo)
+                    intent.putExtra("id_articulo" , id_articulo)
+                    intent.putExtra("nombre" , nombre)
+                    intent.putExtra("precilo_lista_1" , precio_lista_1)
+                    intent.putExtra("precilo_lista_2" , precio_lista_2)
+                    intent.putExtra("precilo_lista_3" , precio_lista_3)
+                    intent.putExtra("codbarras" , codbarras)
+                    intent.putExtra("stock", stock)
+                    intent.putExtra("price_updated_at", price_updated_at)
+
+                } else {
+                    Toast.makeText(this@MainActivity, response.body()?.mensaje, Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+            override fun onFailure(call: Call<ArticuloResponse>, t: Throwable) {
+                Toast.makeText(
+                    this@MainActivity,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+        })
         btnScan = findViewById(R.id.btnScan)
         btnScan!!.setOnClickListener { performAction() }
 

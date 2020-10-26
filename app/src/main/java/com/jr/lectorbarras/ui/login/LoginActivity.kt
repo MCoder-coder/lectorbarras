@@ -10,15 +10,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.ApiInterface
+import com.jr.lectorbarras.data.model.LoginResponse
 import com.jr.lectorbarras.data.model.RetrofitClientApi
-import com.jr.lectorbarras.data.model.SignInBody
+
 import com.jr.lectorbarras.ui.MainActivity
-import okhttp3.ResponseBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.AccessController.getContext
 
 
 class LoginActivity : AppCompatActivity() {
@@ -44,26 +42,32 @@ class LoginActivity : AppCompatActivity() {
             val mensaje = ""
             val estado = ""
 
+            val hash  = ""
+
             val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterface::class.java)
            // val signInInfo = SignInBody(email = email, password = password)
             //Log.i("tag", signInInfo.toString())
-            retIn.login(estado, mensaje, email, password).enqueue(object : Callback<SignInBody> {
+            retIn.login(estado, mensaje, email, password).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
-                    call: Call<SignInBody>,
-                    response: Response<SignInBody>
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
 
                 ) {
                     if (response.body()?.estado == "ok") {
+                        Log.i("tag" ,  response.body()?.mensaje.toString())
                         Toast.makeText(this@LoginActivity, response.body()?.mensaje, Toast.LENGTH_SHORT).show()
+
                         val intent = Intent(applicationContext , MainActivity::class.java)
+                        intent.putExtra("response", response.isSuccessful)
                         startActivity(intent)
+
                     } else {
                         Toast.makeText(this@LoginActivity, response.body()?.mensaje, Toast.LENGTH_SHORT).show()
                     }
 
                 }
 
-                override fun onFailure(call: Call<SignInBody>, t: Throwable) {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     Toast.makeText(
                         this@LoginActivity,
                         t.message,
