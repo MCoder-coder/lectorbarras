@@ -1,6 +1,6 @@
 package com.jr.lectorbarras.data.model
 
-import android.util.Log
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,6 +23,9 @@ class RetrofitClientApi {
 
 
         }
+        var gson = GsonBuilder()
+            .setLenient()
+            .create()
 
         val client: OkHttpClient = OkHttpClient.Builder().apply {
 

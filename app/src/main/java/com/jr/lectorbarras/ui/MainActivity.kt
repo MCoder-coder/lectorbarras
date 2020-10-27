@@ -1,24 +1,26 @@
 package com.jr.lectorbarras.ui
+
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ApiInterface
+import com.jr.lectorbarras.data.model.ApiInterfaceRequest
 import com.jr.lectorbarras.data.model.ArticuloResponse
-import com.jr.lectorbarras.data.model.LoginResponse
 import com.jr.lectorbarras.data.model.RetrofitClientApi
-
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,48 +46,24 @@ class MainActivity : AppCompatActivity() {
     val mensaje = ""
     val estado = ""
     val hash : String = "3df76a7a956c427db7c76ccc8f2bce7e"
+    private lateinit var editTextBuscar: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        // val data = HashMap<String, String>()
        // txtName = findViewById(R.id.name)
         //txtSiteName = findViewById(R.id.site_name)
-        val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterface::class.java)
-        retIn.articuloResponse(hash,estado, mensaje, cod_articulo, id_articulo, nombre, precio_lista_1, precio_lista_2, precio_lista_3, codbarras, stock, price_updated_at ).enqueue(object : Callback<ArticuloResponse> {
-            override fun onResponse(
-                call: Call<ArticuloResponse>,
-                response: Response<ArticuloResponse>
+        val intent = intent
+        //val data_param = intent.getSerializableExtra("data") as HashMap<String, String>
+        val hash_param = intent.getSerializableExtra("hash") as String
+        val code = "7798311170019"
 
-            ) {
-                if (response.body()?.estado == "ok") {
-                    Toast.makeText(this@MainActivity,response.body()?.mensaje, Toast.LENGTH_SHORT).show()
-                    intent.putExtra("cod_Articulo" , cod_articulo)
-                    intent.putExtra("id_articulo" , id_articulo)
-                    intent.putExtra("nombre" , nombre)
-                    intent.putExtra("precilo_lista_1" , precio_lista_1)
-                    intent.putExtra("precilo_lista_2" , precio_lista_2)
-                    intent.putExtra("precilo_lista_3" , precio_lista_3)
-                    intent.putExtra("codbarras" , codbarras)
-                    intent.putExtra("stock", stock)
-                    intent.putExtra("price_updated_at", price_updated_at)
+       // Log.i("data main" , data_param.toString())
+        Log.i("data main" , hash_param.toString())
 
-                } else {
-                    Toast.makeText(this@MainActivity, response.body()?.mensaje, Toast.LENGTH_SHORT).show()
-                }
 
-            }
-
-            override fun onFailure(call: Call<ArticuloResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@MainActivity,
-                    t.message,
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-        })
         btnScan = findViewById(R.id.btnScan)
         btnScan!!.setOnClickListener { performAction() }
 
@@ -93,6 +71,50 @@ class MainActivity : AppCompatActivity() {
         qrScanIntegrator?.setOrientationLocked(false)
 
         btnbuscar.setOnClickListener {
+            editTextBuscar = findViewById(R.id.editTextBuscar)
+
+            val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterfaceRequest::class.java)
+            retIn.articuloResponse(code, hash)
+                .enqueue(object : Callback<ArticuloResponse> {
+                    override fun onResponse(
+                        call: Call<ArticuloResponse>,
+                        response: Response<ArticuloResponse>
+
+                    ) {
+                        if (response.body()?.estado == "ok") {
+                            Toast.makeText(this@MainActivity, response.body()?.mensaje, Toast.LENGTH_SHORT)
+                                .show()
+                            val articulos_array = response.body()?.data?.get("articulos");
+                            /* if(articulos_array?.length){
+
+                             }*/
+
+
+                            /*  intent.putExtra("id_articulo", id_articulo)
+                              intent.putExtra("nombre", nombre)
+                              intent.putExtra("precilo_lista_1", precio_lista_1)
+                              intent.putExtra("precilo_lista_2", precio_lista_2)
+                              intent.putExtra("precilo_lista_3", precio_lista_3)
+                              intent.putExtra("codbarras", codbarras)
+                              intent.putExtra("stock", stock)
+                              intent.putExtra("price_updated_at", price_updated_at)*/
+
+                        } else {
+                            Toast.makeText(this@MainActivity, response.body()?.mensaje, Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<ArticuloResponse>, t: Throwable) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            t.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+                })
 
         }
 
@@ -123,9 +145,9 @@ class MainActivity : AppCompatActivity() {
                     //tvprecio?.text = obj.getString("articulo")
 
                     val intent = Intent(this, ResultadoActivity::class.java)
-                    intent.putExtra("articulo" , obj.getString("Stock"))
-                    intent.putExtra("precio" ,obj.getString("precio"))
-                    intent.putExtra("articulo" ,obj.getString("articulo"))
+                    intent.putExtra("articulo", obj.getString("Stock"))
+                    intent.putExtra("precio", obj.getString("precio"))
+                    intent.putExtra("articulo", obj.getString("articulo"))
                     startActivity(intent)
 
 
@@ -138,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                     //intent.putExtra("stock" , obj.getString("stock"))
                     //intent.putExtra("precio" ,obj.getString("precio"))
                     //intent.putExtra("articulo" ,obj.getString("articulo"))
-                    intent.putExtra("result" , result.contents)
+                    intent.putExtra("result", result.contents)
                     startActivity(intent)
 
                 }

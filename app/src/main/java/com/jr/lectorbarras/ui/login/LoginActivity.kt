@@ -9,10 +9,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ApiInterface
+import com.jr.lectorbarras.data.model.ApiInterfaceRequest
 import com.jr.lectorbarras.data.model.LoginResponse
 import com.jr.lectorbarras.data.model.RetrofitClientApi
-
 import com.jr.lectorbarras.ui.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,28 +40,47 @@ class LoginActivity : AppCompatActivity() {
             val password = password.text.toString().trim()
             val mensaje = ""
             val estado = ""
-
-            val hash  = ""
-
-            val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterface::class.java)
+            val data = HashMap<String, String>()
+             val nombre = ""
+            Log.i("tag", data.toString())
+            val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterfaceRequest::class.java)
            // val signInInfo = SignInBody(email = email, password = password)
             //Log.i("tag", signInInfo.toString())
-            retIn.login(estado, mensaje, email, password).enqueue(object : Callback<LoginResponse> {
+            retIn.login(email, password).enqueue(object :
+                Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
                     response: Response<LoginResponse>
 
                 ) {
                     if (response.body()?.estado == "ok") {
-                        Log.i("tag" ,  response.body()?.mensaje.toString())
-                        Toast.makeText(this@LoginActivity, response.body()?.mensaje, Toast.LENGTH_SHORT).show()
+                        Log.i("tag", response.body().toString())
+                        Toast.makeText(
+                            this@LoginActivity,
+                            response.body()?.mensaje,
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-                        val intent = Intent(applicationContext , MainActivity::class.java)
-                        intent.putExtra("response", response.isSuccessful)
+                        val myNewHash = response.body()?.data?.get("hash");
+                        // log (revisar)
+                        Log.i("tag", "Hash: " + myNewHash);
+
+                        // guardar hash en SharedPreference
+
+
+
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        intent.putExtra("data", response.body()?.data)
+                        intent.putExtra("hash", myNewHash)
                         startActivity(intent)
 
+
                     } else {
-                        Toast.makeText(this@LoginActivity, response.body()?.mensaje, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            response.body()?.mensaje,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                 }

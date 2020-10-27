@@ -7,6 +7,7 @@ data class ArticuloResponse(
 
      val estado: String,
      val mensaje: String,
+     val data: HashMap<String,String>? ,
      val id_articulo : String ,
      val cod_articulo: String,
      val nombre: String,
