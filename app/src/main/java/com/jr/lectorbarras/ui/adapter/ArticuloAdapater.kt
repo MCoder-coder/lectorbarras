@@ -12,6 +12,8 @@ import com.jr.lectorbarras.data.model.ArticulosJson
 
 class ArticuloAdapater(
     val articulosList: List<ArticulosJson>): RecyclerView.Adapter<ArticuloAdapater.ViewHolder>(){
+
+
     val artListenr: ArticuloListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -26,6 +28,7 @@ class ArticuloAdapater(
         holder.tvIdArticulo.text = art.cod_articulo
         holder.tvCodeBarras.text = art.codbarras
         holder.itemView.setOnClickListener {
+            Log.i("clicked" , "click")
             artListenr?.onArticulosClicked(art, position)
 
         }

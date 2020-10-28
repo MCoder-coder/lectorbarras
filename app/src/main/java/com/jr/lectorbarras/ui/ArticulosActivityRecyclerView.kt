@@ -116,7 +116,8 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
     }
 
     override fun onArticulosClicked(articulosJson: ArticulosJson, position: Int) {
-        Log.i("click" , articulosJson.cod_articulo)
+        Log.i("click recyclerviw" , position.toString())
+        Toast.makeText(this, "Clicked: ${articulosJson.id_articulo}", Toast.LENGTH_LONG).show()
     }
 
 }
