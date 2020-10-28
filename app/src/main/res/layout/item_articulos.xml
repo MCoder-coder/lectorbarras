@@ -32,7 +32,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/tvIdArticulo"
+                android:id="@+id/IdArticulo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -45,7 +45,7 @@
                 tools:text="My Title" />
 
             <TextView
-                android:id="@+id/tvcodigobarras"
+                android:id="@+id/codigobarras"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
