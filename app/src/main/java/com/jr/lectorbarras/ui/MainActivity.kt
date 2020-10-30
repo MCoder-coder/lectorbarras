@@ -107,10 +107,9 @@ class MainActivity : AppCompatActivity() {
                     //tvprecio?.text = obj.getString("precio")
                     //tvprecio?.text = obj.getString("articulo")
 
-                    val intent = Intent(this, ResultadoActivity::class.java)
-                    intent.putExtra("articulo", obj.getString("Stock"))
-                    intent.putExtra("precio", obj.getString("precio"))
-                    intent.putExtra("articulo", obj.getString("articulo"))
+                    val intent = Intent(this, ArticulosActivityRecyclerView::class.java)
+                    intent.putExtra("code", obj.getString("code"))
+
                     startActivity(intent)
 
 
@@ -118,12 +117,12 @@ class MainActivity : AppCompatActivity() {
                     e.printStackTrace()
                    // val obj = JSONObject(result.contents)
 
-                    val intent = Intent(this, ResultadoActivity::class.java)
+                    val intent = Intent(this, ArticulosActivityRecyclerView::class.java)
                    // val intent = Intent(this, ResultadoActivity::class.java)
                     //intent.putExtra("stock" , obj.getString("stock"))
                     //intent.putExtra("precio" ,obj.getString("precio"))
                     //intent.putExtra("articulo" ,obj.getString("articulo"))
-                    intent.putExtra("result", result.contents)
+                    intent.putExtra("code", result.contents)
                     startActivity(intent)
 
                 }

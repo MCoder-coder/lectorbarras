@@ -1,5 +1,6 @@
 package com.jr.lectorbarras.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.*
 import com.jr.lectorbarras.ui.adapter.ArticuloAdapater
@@ -25,7 +27,7 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
         var articulosData: List<ArticulosJson> = ArrayList()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = ArticuloAdapater(articulosData)
+        recyclerView.adapter = ArticuloAdapater(articulosData , this@ArticulosActivityRecyclerView)
         //var articulosList: List<ArticulosJson>
         val position : Int
         val code = intent.getStringExtra("code");
@@ -49,7 +51,7 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
                 if (response.isSuccessful) {
                     val xxx = response.body()?.data?.articulos
                     articulosData = xxx as List<ArticulosJson>
-                    recyclerView.adapter = ArticuloAdapater(articulosData)
+                    recyclerView.adapter = ArticuloAdapater(articulosData, this@ArticulosActivityRecyclerView)
 
                 }
                 //recyclerView.adapter = ArticuloAdapater(ArticulosData)
@@ -59,6 +61,12 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
             override fun onFailure(call: Call<ArticuloResponse>, t: Throwable?) {
                 Log.i("tag" , "onFailure")
                 Log.i("tag" , t.toString())
+                FirebaseCrashlytics.getInstance().recordException(t!!)
+                Toast.makeText(
+                    this@ArticulosActivityRecyclerView,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
@@ -116,8 +124,21 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
     }
 
     override fun onArticulosClicked(articulosJson: ArticulosJson, position: Int) {
-        Log.i("click recyclerviw" , position.toString())
-        Toast.makeText(this, "Clicked: ${articulosJson.id_articulo}", Toast.LENGTH_LONG).show()
+
+
+        val intent = Intent(this, ResultadoActivity::class.java)
+        intent.putExtra("id_articulo", articulosJson.id_articulo)
+        intent.putExtra("cod_articulo", articulosJson.cod_articulo)
+        intent.putExtra("nombre", articulosJson.nombre)
+        intent.putExtra("precio_lista_1" , articulosJson.precio_lista_1)
+        intent.putExtra("precio_lista_2" , articulosJson.precio_lista_2)
+        intent.putExtra("precio_lista_3" , articulosJson.precio_lista_3)
+        intent.putExtra("codbarras" , articulosJson.codbarras)
+        intent.putExtra("stock" , articulosJson.stock)
+        intent.putExtra("price_updated_at" , articulosJson.price_updated_at)
+        startActivity(intent)
+
+
     }
 
 }

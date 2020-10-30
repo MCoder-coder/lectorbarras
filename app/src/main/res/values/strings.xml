@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lector Barras</string>
+    <string name="app_name">Siskit Stock APP</string>
     <string name="showing_code_in_fragment">Showing code in fragment</string>
     <string name="scan_qr_code">SCAN</string>
     <string name="name">Name</string>
@@ -8,7 +8,9 @@
     <string name="scan_a_code">Scan a QR Code</string>
     <string name="result_not_found">Result Not Found</string>
     <string name="show_scanner_from_fragment">Show Scanner From Fragment</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="resultado">Resultado</string>
+    <string name="detallearticulo">Detalle de Articulo</string>
+    <string name="modificarstock">Modificar Stock</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign</string>

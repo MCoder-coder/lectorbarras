@@ -13,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClientApi {
 
 
-        val BASE_URL = "http://www.nanod10.com.ar/stock-api/"
 
     companion object {
         val BASE_URL: String = "http://www.nanod10.com.ar/stock-api/"
@@ -23,9 +22,7 @@ class RetrofitClientApi {
 
 
         }
-        var gson = GsonBuilder()
-            .setLenient()
-            .create()
+
 
         val client: OkHttpClient = OkHttpClient.Builder().apply {
 

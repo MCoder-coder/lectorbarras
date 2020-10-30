@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.ApiInterfaceRequest
 import com.jr.lectorbarras.data.model.LoginResponse
@@ -27,11 +28,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
+
         var retrofitClient = RetrofitClientApi()
         val email = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.btnlogin)
-        val loading = findViewById<ProgressBar>(R.id.loading)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
 
         login.setOnClickListener {
 
@@ -91,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
                         t.message,
                         Toast.LENGTH_SHORT
                     ).show()
+                    FirebaseCrashlytics.getInstance().recordException(t!!)
 
                 }
             })

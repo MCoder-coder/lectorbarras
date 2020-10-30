@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682463283090",
+    "firebase_url": "https://lectorcodigobarras-23568.firebaseio.com",
+    "project_id": "lectorcodigobarras-23568",
+    "storage_bucket": "lectorcodigobarras-23568.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682463283090:android:06d07e7479d8049ecc234b",
+        "android_client_info": {
+          "package_name": "com.jr.lectorbarras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682463283090-877hopvou9hvbuvodq44j4v859iuhan0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jr.lectorbarras",
+            "certificate_hash": "74b1e9841504e90da0eba2f7ddeb7b49ea1daf2b"
+          }
+        },
+        {
+          "client_id": "682463283090-74a11am1ufqnl01lvmvp7v4o1i85g494.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6bbRQFoLMYQ-wbj5ub1y2n0PMbXTeRy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682463283090-74a11am1ufqnl01lvmvp7v4o1i85g494.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
