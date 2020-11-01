@@ -6,9 +6,11 @@ import android.content.SharedPreferences
 import com.jr.lectorbarras.R
 
 
+*/
 /**
  * Session manager to save and fetch data from SharedPreferences
  */
+
 
 class SharedPrefManager private constructor(private val mCtx: Context) {
 
@@ -21,12 +23,16 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
     val user: LoginResponse
         get() {
             val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-          /*  return LoginResponse()(
+
+/*
+  return LoginResponse()(
                 //sharedPreferences.getInt("id", -1),
                 sharedPreferences.getString("email" , null).toString(),
                 sharedPreferences.getString("password", null).toString()
-            )*/
+            )
+
         }
+*/
 
 
     fun saveUser(user: LoginResponse) {
@@ -34,10 +40,12 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-/*
+
+
         editor.putString("email", user.)
         editor.putString("password", user.password)
-*/
+
+
 
 
         editor.apply()
@@ -64,3 +72,4 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
     }
 
 }
+

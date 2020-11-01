@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        var retrofitClient = RetrofitClientApi()
+
         val email = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.btnlogin)
@@ -43,11 +43,9 @@ class LoginActivity : AppCompatActivity() {
             val mensaje = ""
             val estado = ""
             val data = HashMap<String, String>()
-             val nombre = ""
-            Log.i("tag", data.toString())
+            val nombre = ""
+
             val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterfaceRequest::class.java)
-           // val signInInfo = SignInBody(email = email, password = password)
-            //Log.i("tag", signInInfo.toString())
             retIn.login(email, password).enqueue(object :
                 Callback<LoginResponse> {
                 override fun onResponse(

@@ -35,8 +35,6 @@ class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: A
     }
 
     override fun getItemCount(): Int {
-        Log.i("tag adapter", "getImtemCount")
-        Log.i("tag adapter", articulosList.toString())
         return articulosList.size
     }
 

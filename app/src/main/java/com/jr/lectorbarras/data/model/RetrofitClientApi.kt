@@ -38,28 +38,5 @@ class RetrofitClientApi {
         }
     }
 
-  /* private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor { chain ->
-            val original = chain.request()
-            Log.i("original: " , original.method.toString())
-            val requestBuilder = original.newBuilder()
-               // .addHeader("Authorization", AUTH)
-                .method(original.method, original.body)
-
-            val request = requestBuilder.build()
-            Log.i("request: " , request.toString())
-            chain.proceed(request)
-
-        }.build()
-
-    val instance: ApiInterface by lazy{
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-        Log.i("instance:: " , BASE_URL)
-        retrofit.create(ApiInterface::class.java)
-    }*/
 
 }
