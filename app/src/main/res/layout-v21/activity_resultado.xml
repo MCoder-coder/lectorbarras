@@ -255,7 +255,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/textview"
+        android:text="TextView"
         android:textSize="16dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/idArticulo"

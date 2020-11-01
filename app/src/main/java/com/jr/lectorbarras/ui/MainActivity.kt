@@ -34,17 +34,8 @@ class MainActivity : AppCompatActivity() {
     private var articuloModel: ArticuloResponse? = null
 
 
-    val id_articulo : String = ""
-    val cod_articulo: String = ""
-    val nombre: String = ""
-    val precio_lista_1: String = ""
-    val precio_lista_2: String = ""
-    val precio_lista_3: String = ""
-    val codbarras: String = ""
+
     val stock : String = ""
-    val price_updated_at: String = ""
-    val mensaje = ""
-    val estado = ""
     val hash : String = "3df76a7a956c427db7c76ccc8f2bce7e"
     //private lateinit var editTextBuscar: EditText
 
@@ -57,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         //txtSiteName = findViewById(R.id.site_name)
         val intent = intent
         //val data_param = intent.getSerializableExtra("data") as HashMap<String, String>
-        val hash_param = intent.getSerializableExtra("hash") as String
+//        val hash_param = intent.getSerializableExtra("hash") as String
        // val code = "7798311170019"
 
        // Log.i("data main" , data_param.toString())
-        Log.i("data main" , hash_param.toString())
+       // Log.i("data main" , hash_param.toString())
 
 
         btnScan = findViewById(R.id.btnScan)

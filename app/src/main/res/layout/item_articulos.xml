@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:elevation="45dp"
 
         >
 
@@ -47,7 +48,7 @@
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="104dp"
                 android:layout_marginEnd="128dp"
-                android:text="codigo sistema"
+                android:text="@string/codigo_sistema"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/codigobarras"
@@ -59,7 +60,7 @@
                 android:id="@+id/tvstock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="stock"
+                android:text="@string/stock"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="Precio lista 1"
+                android:text="@string/precio_lista_1"
                 app:layout_constraintBottom_toBottomOf="parent"
 
 
@@ -90,14 +91,12 @@
             <TextView
                 android:id="@+id/codigobarras"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:ellipsize="end"
                 android:maxLines="5"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

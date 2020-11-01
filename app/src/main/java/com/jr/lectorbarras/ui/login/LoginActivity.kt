@@ -61,17 +61,17 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        val myNewHash = response.body()?.data?.get("hash");
+                        val myNewHash = response.body()!!.data.hash
                         // log (revisar)
-                        Log.i("tag", "Hash: " + myNewHash);
+                        //Log.i("tag", "Hash: " + myNewHash);
 
                         // guardar hash en SharedPreference
 
 
 
                         val intent = Intent(applicationContext, MainActivity::class.java)
-                        intent.putExtra("data", response.body()?.data)
                         intent.putExtra("hash", myNewHash)
+                        //intent.putExtra("hash", myNewHash)
                         startActivity(intent)
 
 
@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
                         t.message,
                         Toast.LENGTH_SHORT
                     ).show()
-                    FirebaseCrashlytics.getInstance().recordException(t!!)
+                    FirebaseCrashlytics.getInstance().recordException(t)
 
                 }
             })
