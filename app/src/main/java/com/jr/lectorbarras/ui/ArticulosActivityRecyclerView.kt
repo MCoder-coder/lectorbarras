@@ -35,7 +35,7 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
 
         Log.i("tag" , "onCreateList")
 
-        val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterfaceRequest::class.java)
+        val retIn = RetrofitClientApi.getRetrofitInstance(this).create(ApiInterfaceRequest::class.java)
         retIn.articuloResponse(code!!, hash).enqueue(object :
             Callback<ArticuloResponse> {
             override fun onResponse(

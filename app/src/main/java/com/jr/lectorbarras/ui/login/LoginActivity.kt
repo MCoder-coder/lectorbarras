@@ -3,17 +3,21 @@ package com.jr.lectorbarras.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.ktx.Firebase
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.ApiInterfaceRequest
 import com.jr.lectorbarras.data.model.LoginResponse
 import com.jr.lectorbarras.data.model.RetrofitClientApi
+import com.jr.lectorbarras.data.model.SessionManager
 import com.jr.lectorbarras.ui.MainActivity
+import okhttp3.Handshake.Companion.handshake
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +31,16 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
+ /*       val crashButton = Button(this)
+        crashButton.text = "Crash!"
+        crashButton.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
 
+        addContentView(crashButton, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT))
+*/
 
 
         val email = findViewById<EditText>(R.id.username)
@@ -38,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
         login.setOnClickListener {
 
             //Obtenemos usuario y contraseña
+            val ipserver = ipserver.text.toString().trim()
             val email = email.text.toString().trim()
             val password = password.text.toString().trim()
             val mensaje = ""
@@ -45,7 +59,12 @@ class LoginActivity : AppCompatActivity() {
             val data = HashMap<String, String>()
             val nombre = ""
 
-            val retIn = RetrofitClientApi.getRetrofitInstance().create(ApiInterfaceRequest::class.java)
+            //guardar ip server en shared preferences
+            val pref_save = SessionManager.getInstance(this@LoginActivity)
+            pref_save.host = ipserver
+            pref_save.email = email
+
+            val retIn = RetrofitClientApi.getRetrofitInstance(this@LoginActivity).create(ApiInterfaceRequest::class.java)
             retIn.login(email, password).enqueue(object :
                 Callback<LoginResponse> {
                 override fun onResponse(
@@ -53,6 +72,11 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<LoginResponse>
 
                 ) {
+
+                    Log.i("onResponse" , "paso por onResponse")
+                    Log.i("Onresponse" , response.raw().toString())
+
+
                     if (response.body()?.estado == "ok") {
                         Log.i("tag", response.body().toString())
                         Toast.makeText(
@@ -66,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                         //Log.i("tag", "Hash: " + myNewHash);
 
                         // guardar hash en SharedPreference
-
+                        pref_save.hash = myNewHash
 
 
                         val intent = Intent(applicationContext, MainActivity::class.java)
@@ -78,7 +102,7 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this@LoginActivity,
-                            response.body()?.mensaje,
+                            response.message(),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -86,11 +110,13 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Log.i("onFailure" , "paso por onFailure")
                     Toast.makeText(
                         this@LoginActivity,
                         t.message,
                         Toast.LENGTH_SHORT
                     ).show()
+
                     FirebaseCrashlytics.getInstance().recordException(t)
 
                 }

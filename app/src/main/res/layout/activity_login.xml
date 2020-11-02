@@ -19,8 +19,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="24dp"
-        android:hint="IP del Servidor"
 
+        android:text="www.nanod10.com.ar"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
 
@@ -83,6 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.2" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
+/*
 
 
-package com.jr.lectorbarras.data.model
+//package com.jr.lectorbarras.data.model
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,9 +10,12 @@ import com.jr.lectorbarras.R
 
 
 
+*/
 /**
  * Session manager to save and fetch data from SharedPreferences
  *//*
+*/
+/*
 
 
 
@@ -87,3 +91,4 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
 }
 
 
+*/
