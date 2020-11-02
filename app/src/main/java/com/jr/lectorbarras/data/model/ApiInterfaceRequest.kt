@@ -15,6 +15,21 @@ interface ApiInterfaceRequest {
     ):retrofit2.Call<LoginResponse>
 
 
+
+
+
+    @FormUrlEncoded
+    //@Headers("Content-Type: application/json")
+    @POST("verificar-hash.php")
+    fun verificarHash(
+        @Field("hash") hash: String,
+
+    ):retrofit2.Call<VerificarHashResponse>
+
+
+
+
+
     //@HTTP(method = "GET", path = "/login.php?", hasBody = true)
     //request de tipo get / ruta login.php url
     @FormUrlEncoded
