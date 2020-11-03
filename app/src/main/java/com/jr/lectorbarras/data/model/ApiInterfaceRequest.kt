@@ -14,10 +14,6 @@ interface ApiInterfaceRequest {
         @Field("password") password: String
     ):retrofit2.Call<LoginResponse>
 
-
-
-
-
     @FormUrlEncoded
     //@Headers("Content-Type: application/json")
     @POST("verificar-hash.php")
@@ -26,8 +22,15 @@ interface ApiInterfaceRequest {
 
     ):retrofit2.Call<VerificarHashResponse>
 
-
-
+    @FormUrlEncoded
+    //@Headers("Content-Type: application/json")
+    @POST("modificar-stock.php")
+    fun modificarStock(
+         @Field("hash") hash: String,
+         @Field("id_articulo") id_articulo: String,
+         @Field("cantidad_actual") cantidad_actual: String,
+         @Field("cantidad_nueva") cantidad_Nueva: String
+        ):retrofit2.Call<ModificarStockResponse>
 
 
     //@HTTP(method = "GET", path = "/login.php?", hasBody = true)
@@ -37,7 +40,6 @@ interface ApiInterfaceRequest {
     fun articuloResponse(
         @Field("codigo") codigo: String,
         @Field("hash") hash: String
-
 
         ): retrofit2.Call<ArticuloResponse>
 }

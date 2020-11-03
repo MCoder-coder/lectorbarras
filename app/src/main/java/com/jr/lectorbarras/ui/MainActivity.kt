@@ -1,26 +1,18 @@
 package com.jr.lectorbarras.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
+import com.journeyapps.barcodescanner.CaptureActivity
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ApiInterfaceRequest
 import com.jr.lectorbarras.data.model.ArticuloResponse
-import com.jr.lectorbarras.data.model.RetrofitClientApi
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,20 +47,23 @@ class MainActivity : AppCompatActivity() {
        // Log.i("data main" , hash_param.toString())
 
 
+
         btnScan = findViewById(R.id.btnScan)
         btnScan!!.setOnClickListener { performAction() }
 
         qrScanIntegrator = IntentIntegrator(this)
         qrScanIntegrator?.setOrientationLocked(false)
 
+
         btnbuscar.setOnClickListener {
             //editTextBuscar = findViewById(R.id.editTextBuscar)
 
            var code = editTextBuscar.text.toString()
 
-            val intent = Intent(this,ArticulosActivityRecyclerView::class.java)
-            intent.putExtra("code",code)
+            val intent = Intent(this, ArticulosActivityRecyclerView::class.java)
+            intent.putExtra("code", code)
             startActivity(intent)
+
 
         }
 

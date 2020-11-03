@@ -21,6 +21,7 @@
         android:usesCleartextTraffic="true" >
         <activity android:name=".ui.ArticulosActivityRecyclerView"
             android:label="@string/resultado"
+            android:screenOrientation="portrait"
             >
         </activity>
         <activity
@@ -49,6 +50,7 @@
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
+
             tools:replace="screenOrientation" />
     </application>
 

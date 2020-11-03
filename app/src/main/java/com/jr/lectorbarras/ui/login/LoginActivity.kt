@@ -52,8 +52,8 @@ class LoginActivity : AppCompatActivity() {
 
                 ) {
 
-                    Log.i("VerificandoHash" , "paso por onResponse")
-                    Log.i("VerificandoHash" , response.raw().toString())
+                    /*Log.i("VerificandoHash" , "paso por onResponse")
+                    Log.i("VerificandoHash" , response.raw().toString())*/
 
 
                     if (response.body()?.estado == "ok") {
@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
 
                         //intent.putExtra("hash", myNewHash)
                         startActivity(intent)
-
+                        //finish()
 
                     } else {
                         pref_save.hash  = ""

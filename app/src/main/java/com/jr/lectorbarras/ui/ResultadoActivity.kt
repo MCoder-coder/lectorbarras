@@ -5,8 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.jr.lectorbarras.R
+import com.jr.lectorbarras.data.model.ApiInterfaceRequest
+import com.jr.lectorbarras.data.model.RetrofitClientApi
+import com.jr.lectorbarras.data.model.SessionManager
+import com.jr.lectorbarras.data.model.VerificarHashResponse
 import kotlinx.android.synthetic.main.activity_resultado.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ResultadoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +44,16 @@ class ResultadoActivity : AppCompatActivity() {
 
         btnModificarStock.setOnClickListener {
             val intent = Intent(this , ModificarStockActivity::class.java)
+            intent.putExtra("id_articulo", id_articulo)
             intent.putExtra("stock", stock)
             intent.putExtra("cod_articulo" , cod_articulo)
             startActivity(intent)
 
+
         }
+
+
+
     }
 
 
