@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ApiInterfaceRequest
-import com.jr.lectorbarras.data.model.ArticuloResponse
-import com.jr.lectorbarras.data.model.ArticulosJson
-import com.jr.lectorbarras.data.model.RetrofitClientApi
+import com.jr.lectorbarras.data.model.*
 import com.jr.lectorbarras.ui.adapter.ArticuloAdapater
 import com.jr.lectorbarras.ui.adapter.ArticuloListener
 import kotlinx.android.synthetic.main.activity_articulos_recycler_view.*
@@ -38,9 +35,60 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
         val hash : String = "3df76a7a956c427db7c76ccc8f2bce7e"
 
         Log.i("tag", "onCreateList")
+        val pref_save = SessionManager.getInstance(this)
+
+        //verificar hash
+        if (pref_save.hash != ""){
+            //verificar request
+            val verficarHash = RetrofitClientApi.getRetrofitInstance(this).create(ApiInterfaceRequest::class.java)
+            verficarHash.verificarHash(pref_save.hash).enqueue(object :
+                Callback<VerificarHashResponse> {
+                override fun onResponse(
+                    call: Call<VerificarHashResponse>,
+                    response: Response<VerificarHashResponse>
+
+                ) {
+
+                    /*Log.i("VerificandoHash" , "paso por onResponse")
+                    Log.i("VerificandoHash" , response.raw().toString())*/
+
+
+                    if (response.body()?.estado == "ok") {
+                        Log.i("VerificandoHash", "body: " + response.body().toString())
+
+
+                        //finish()
+
+                    } else {
+                        pref_save.hash  = ""
+                        Toast.makeText(
+                            this@ArticulosActivityRecyclerView,
+                            response.body()?.mensaje,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+                override fun onFailure(call: Call<VerificarHashResponse>, t: Throwable) {
+                    Log.i("VerificandoHash" , "paso por onFailure")
+                    pref_save.hash  = ""
+/*
+                    Toast.makeText(
+                        this@LoginActivity,
+                        t.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    FirebaseCrashlytics.getInstance().recordException(t)
+*/
+
+                }
+            })
+        }
 
         val retIn = RetrofitClientApi.getRetrofitInstance(this).create(ApiInterfaceRequest::class.java)
-        retIn.articuloResponse(code!!, hash).enqueue(object :
+        retIn.articuloResponse(code!!, pref_save.hash).enqueue(object :
             Callback<ArticuloResponse> {
             override fun onResponse(
                 call: Call<ArticuloResponse>,
@@ -96,9 +144,12 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
         intent.putExtra("codbarras", articulosJson.codbarras)
         intent.putExtra("stock", articulosJson.stock)
         intent.putExtra("price_updated_at", articulosJson.price_updated_at)
+
         startActivity(intent)
 
 
     }
+
+
 
 }

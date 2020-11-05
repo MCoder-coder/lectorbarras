@@ -42,11 +42,20 @@ class ResultadoActivity : AppCompatActivity() {
         tvFecha.text = price_updated_at
         tvnombre.text= nombre
 
+
+
         btnModificarStock.setOnClickListener {
             val intent = Intent(this , ModificarStockActivity::class.java)
             intent.putExtra("id_articulo", id_articulo)
+            intent.putExtra("cod_articulo",cod_articulo)
             intent.putExtra("stock", stock)
-            intent.putExtra("cod_articulo" , cod_articulo)
+            intent.putExtra("nombre", nombre)
+            intent.putExtra("precio_lista_1", precio_lista_1)
+            intent.putExtra("precio_lista_2", precio_lista_2)
+            intent.putExtra("precio_lista_3", precio_lista_3)
+            intent.putExtra("codbarras", codbarras)
+            intent.putExtra("stock", stock)
+            intent.putExtra("price_updated_at", price_updated_at)
             startActivity(intent)
 
 

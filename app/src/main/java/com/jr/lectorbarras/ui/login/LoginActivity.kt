@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.ktx.Firebase
 import com.jr.lectorbarras.R
@@ -27,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+
 
  /*       val crashButton = Button(this)
         crashButton.text = "Crash!"
@@ -59,10 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     if (response.body()?.estado == "ok") {
                         Log.i("VerificandoHash", "body: " + response.body().toString())
 
-                        val intent = Intent(applicationContext, MainActivity::class.java)
 
-                        //intent.putExtra("hash", myNewHash)
-                        startActivity(intent)
                         //finish()
 
                     } else {

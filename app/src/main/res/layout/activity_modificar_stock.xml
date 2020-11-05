@@ -42,6 +42,7 @@
         android:layout_marginTop="82dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/ingrese_cantidad"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
