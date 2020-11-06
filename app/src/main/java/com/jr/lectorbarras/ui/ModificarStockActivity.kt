@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -106,6 +109,12 @@ class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
                                 response.body()?.mensaje,
                                 Toast.LENGTH_SHORT
                             ).show()
+                        /*val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
+                        var articulosData: List<ArticulosJson> = ArrayList()
+                        recyclerView.layoutManager = LinearLayoutManager(this@ModificarStockActivity)
+                        recyclerView.setHasFixedSize(true)
+                        recyclerView.adapter = ArticuloAdapater(articulosData, this@ModificarStockActivity)*/
+
 
 
                     }else{
@@ -136,6 +145,7 @@ class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
                       ).show()
                 }
             })
+
 
         }
 
