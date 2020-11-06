@@ -1,15 +1,16 @@
 package com.jr.lectorbarras.ui
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+
+
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,13 +27,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
+class ModificarStockActivity : AppCompatActivity(){
+
+    lateinit var mySharedPref: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modificar_stock)
 
 
-
+        setMySharedPref()
 
         val cod_articulo = intent.getStringExtra("cod_articulo")
 
@@ -50,52 +54,23 @@ class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
 
 
 
-
+    /*    val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
+        var articulosData: List<ArticulosJson> = ArrayList()
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = ArticuloAdapater(articulosData, this)*/
+        //paso la cantidad nueva del stock
         val cantidadNueva = editTextUnidades.text
-
         tvCodigoarticulo.text = cod_articulo
         tvCantidadUnidades.text = cantidad_actual.toString()
-
-        val pref_save = SessionManager.getInstance(this)
-        //verificar hash
-        if (pref_save.hash != ""){
-            //verificar request
-            val verficarHash = RetrofitClientApi.getRetrofitInstance(this).create(ApiInterfaceRequest::class.java)
-            verficarHash.verificarHash(pref_save.hash).enqueue(object :
-                Callback<VerificarHashResponse> {
-                override fun onResponse(
-                    call: Call<VerificarHashResponse>,
-                    response: Response<VerificarHashResponse>
-
-                ) {
-
-                    if (response.body()?.estado == "ok") {
-
-                    } else {
-                        pref_save.hash  = ""
-
-                    }
-
-                }
-
-                override fun onFailure(call: Call<VerificarHashResponse>, t: Throwable) {
-                    Log.i("VerificandoHash" , "paso por onFailure")
-                    pref_save.hash  = ""
-
-                    FirebaseCrashlytics.getInstance().recordException(t)
-
-                }
-            })
-        }
-
 
 
 
         buttonGuardar.setOnClickListener {
             val retrofitModificartock = RetrofitClientApi.getRetrofitInstance(this).create(
                 ApiInterfaceRequest::class.java)
-
-            retrofitModificartock.modificarStock(pref_save.hash , id_articulo.toString(), cantidad_actual.toString() , cantidadNueva.toString(), ).enqueue(object :
+            //request de modificar stock
+            retrofitModificartock.modificarStock(mySharedPref.hash , id_articulo.toString(), cantidad_actual.toString() , cantidadNueva.toString(), ).enqueue(object :
                 Callback<ModificarStockResponse> {
                 override fun onResponse(
                     call: Call<ModificarStockResponse>,
@@ -109,11 +84,6 @@ class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
                                 response.body()?.mensaje,
                                 Toast.LENGTH_SHORT
                             ).show()
-                        /*val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-                        var articulosData: List<ArticulosJson> = ArrayList()
-                        recyclerView.layoutManager = LinearLayoutManager(this@ModificarStockActivity)
-                        recyclerView.setHasFixedSize(true)
-                        recyclerView.adapter = ArticuloAdapater(articulosData, this@ModificarStockActivity)*/
 
 
 
@@ -124,11 +94,6 @@ class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
-
-
-
-
 
 
 
@@ -153,7 +118,13 @@ class ModificarStockActivity : AppCompatActivity(), ArticuloListener {
 
     }
 
-    override fun onArticulosClicked(articulosJson: ArticulosJson, position: Int) {
-        TODO("Not yet implemented")
+
+    fun setMySharedPref() {
+
+        this.mySharedPref = SessionManager.getInstance(this)
+        //return this.mySharedPref;
     }
+
+
+
 }

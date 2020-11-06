@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.zxing.integration.android.IntentIntegrator
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.*
 import com.jr.lectorbarras.ui.adapter.ArticuloAdapater
@@ -18,77 +19,48 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
+
+    lateinit var recyclerView: RecyclerView
+    var articulosData: List<ArticulosJson> = ArrayList()
+    lateinit var mySharedPref: SessionManager
+    var code = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("skttag", "ejecutado ArticulosActivityRecyclerView@onCreate")
+
         setContentView(R.layout.activity_articulos_recycler_view)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-        var articulosData: List<ArticulosJson> = ArrayList()
+        this.recyclerView = findViewById(R.id.recyclerview)
+        this.code = intent.getStringExtra("code").toString();
+
+        initRecyclerView(recyclerView)
+
+
+
+        Log.i("skttag", "ArticulosActivityRecyclerView@onCreate - levantando shared preferences")
+        setMySharedPref()
+
+
+        // Hace el request a barcode.php para consultar el codigo ingresado/leido
+        initRequestBarCode()
+
+
+
+    }
+
+    //inicia el recyclerview
+    fun initRecyclerView(recyclerView: RecyclerView){
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = ArticuloAdapater(articulosData, this@ArticulosActivityRecyclerView)
-        //var articulosList: List<ArticulosJson>
-        val position : Int
-        val code = intent.getStringExtra("code");
-        val hash : String = "3df76a7a956c427db7c76ccc8f2bce7e"
+    }
 
-        Log.i("tag", "onCreateList")
-        val pref_save = SessionManager.getInstance(this)
-
-        //verificar hash
-        if (pref_save.hash != ""){
-            //verificar request
-            val verficarHash = RetrofitClientApi.getRetrofitInstance(this).create(ApiInterfaceRequest::class.java)
-            verficarHash.verificarHash(pref_save.hash).enqueue(object :
-                Callback<VerificarHashResponse> {
-                override fun onResponse(
-                    call: Call<VerificarHashResponse>,
-                    response: Response<VerificarHashResponse>
-
-                ) {
-
-                    /*Log.i("VerificandoHash" , "paso por onResponse")
-                    Log.i("VerificandoHash" , response.raw().toString())*/
-
-
-                    if (response.body()?.estado == "ok") {
-                        Log.i("VerificandoHash", "body: " + response.body().toString())
-
-
-                        //finish()
-
-                    } else {
-                        pref_save.hash  = ""
-                        Toast.makeText(
-                            this@ArticulosActivityRecyclerView,
-                            response.body()?.mensaje,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-
-                }
-
-                override fun onFailure(call: Call<VerificarHashResponse>, t: Throwable) {
-                    Log.i("VerificandoHash" , "paso por onFailure")
-                    pref_save.hash  = ""
-/*
-                    Toast.makeText(
-                        this@LoginActivity,
-                        t.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    FirebaseCrashlytics.getInstance().recordException(t)
-*/
-
-                }
-            })
-        }
-
+    fun initRequestBarCode(){
+        // Request de
         val retIn = RetrofitClientApi.getRetrofitInstance(this).create(ApiInterfaceRequest::class.java)
-        retIn.articuloResponse(code!!, pref_save.hash).enqueue(object :
+        retIn.articuloResponse(code!!, mySharedPref.hash).enqueue(object :
             Callback<ArticuloResponse> {
             override fun onResponse(
                 call: Call<ArticuloResponse>,
@@ -126,14 +98,12 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
                 ).show()
             }
         })
-
-
-
     }
+
 
     override fun onArticulosClicked(articulosJson: ArticulosJson, position: Int) {
 
-
+        //paso lo datos a otro activity resultadoactivity
         val intent = Intent(this, ResultadoActivity::class.java)
         intent.putExtra("id_articulo", articulosJson.id_articulo)
         intent.putExtra("cod_articulo", articulosJson.cod_articulo)
@@ -145,11 +115,51 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
         intent.putExtra("stock", articulosJson.stock)
         intent.putExtra("price_updated_at", articulosJson.price_updated_at)
 
-        startActivity(intent)
+        //startActivity(intent)
+        var requestCode = 10
+        startActivityForResult(intent, requestCode)
 
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 10 ){
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+            Log.i("onActivityResultDetalle", "paso por aca")
+
+            initRecyclerView(recyclerView);
+            initRequestBarCode()
+
+        }
+        Log.i("onActivityResultDetalle", "paso por aca fin")
     }
 
 
 
+
+
+    /*
+    * */
+    fun setMySharedPref() {
+
+        this.mySharedPref = SessionManager.getInstance(this)
+        //return this.mySharedPref;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

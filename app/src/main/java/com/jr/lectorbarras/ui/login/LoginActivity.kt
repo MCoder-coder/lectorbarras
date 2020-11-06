@@ -9,9 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.ktx.Firebase
@@ -43,9 +41,10 @@ class LoginActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT))
 */
+        //guardo el hash en un hsared preferences
         val pref_save = SessionManager.getInstance(this@LoginActivity)
 
-        //verificar hash
+        //verificar hash si el hash no esta vacio
         if (pref_save.hash != ""){
             //verificar request
             val verficarHash = RetrofitClientApi.getRetrofitInstance(this@LoginActivity).create(ApiInterfaceRequest::class.java)

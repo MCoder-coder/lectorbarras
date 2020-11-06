@@ -54,12 +54,12 @@ class MainActivity : AppCompatActivity() {
         qrScanIntegrator = IntentIntegrator(this)
         qrScanIntegrator?.setOrientationLocked(false)
 
-
+        //btn buscar codigo de barras con por edittext
         btnbuscar.setOnClickListener {
             //editTextBuscar = findViewById(R.id.editTextBuscar)
 
-           var code = editTextBuscar.text.toString()
-
+            var code = editTextBuscar.text.toString()
+            //paso a la activity recyclerview
             val intent = Intent(this, ArticulosActivityRecyclerView::class.java)
             intent.putExtra("code", code)
             startActivity(intent)
@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     private fun performAction() {
         // Code to perform action when button is clicked.
         qrScanIntegrator?.initiateScan()
+        //analizo con la camara el codigo de barras
 
     }
 
