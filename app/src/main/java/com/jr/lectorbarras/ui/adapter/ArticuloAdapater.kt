@@ -45,7 +45,7 @@ class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: A
 
     override fun getItemCount(): Int {
         return articulosList.size
-        notifyDataSetChanged()
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

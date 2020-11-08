@@ -7,6 +7,6 @@
     <dimen name="padding_highest">40dp</dimen>
     <dimen name="textsize">20sp</dimen>
     <dimen name="textdescription">17sp</dimen>
-    <dimen name="textnombre">35sp</dimen>
+    <dimen name="textnombre">25sp</dimen>
     <dimen name="textnombretitulo">18sp</dimen>
 </resources>

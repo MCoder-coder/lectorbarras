@@ -78,6 +78,7 @@ class ModificarStockActivity : AppCompatActivity(){
 
 
 
+
                     }else{
                         Toast.makeText(
                             this@ModificarStockActivity,

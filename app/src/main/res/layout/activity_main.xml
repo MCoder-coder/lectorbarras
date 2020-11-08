@@ -16,6 +16,7 @@
         android:layout_height="80dp"
         app:layout_constraintBottom_toTopOf="@+id/btnScan"
         app:layout_constraintTop_toTopOf="parent"
+
         tools:layout_editor_absoluteX="20dp"
         android:src="@drawable/ic_baseline_camera_alt_24"
         >

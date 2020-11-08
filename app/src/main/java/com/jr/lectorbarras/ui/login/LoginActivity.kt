@@ -2,6 +2,7 @@ package com.jr.lectorbarras.ui.login
 
 
 import android.content.Intent
+import android.content.Intent.ShortcutIconResource
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -39,6 +40,12 @@ class LoginActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.WRAP_CONTENT))
 */
         //guardo el hash en un hsared preferences
+        // create shortcut if requested
+
+        // create shortcut if requested
+
+
+        setResult(RESULT_OK, intent)
 
         ivsiskitlogo.setOnClickListener {
             val intent = Intent(
