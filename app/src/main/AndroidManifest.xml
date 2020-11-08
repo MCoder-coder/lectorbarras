@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jr.lectorbarras" >
+    package="com.jr.lectorbarras">
 
     <uses-feature android:name="android.hardware.camera.autoFocus" />
     <uses-feature android:name="android.hardware.camera" />
 
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -18,22 +17,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
-        <activity android:name=".ui.ArticulosActivityRecyclerView"
-            android:label="@string/resultado"
-            android:screenOrientation="portrait"
-            >
-        </activity>
-        <activity
-            android:name=".ui.login.LoginActivity"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.login.SplashscreenActivity">
 
-            android:screenOrientation="portrait"
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:name=".ui.ArticulosActivityRecyclerView"
+            android:label="@string/resultado"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".ui.ModificarStockActivity"
@@ -45,12 +49,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MainActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
-
             tools:replace="screenOrientation" />
     </application>
 

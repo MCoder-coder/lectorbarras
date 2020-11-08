@@ -10,7 +10,17 @@
 
     android:layout_margin="0dp">
 
+    <ImageView
+        android:id="@+id/btnimagen"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnScan"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp"
+        android:src="@drawable/ic_baseline_camera_alt_24"
+        >
 
+    </ImageView>
     <Button
         android:id="@+id/btnScan"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -35,6 +45,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
+        android:textSize="@dimen/edit_Text"
         android:text="7798311170019"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"

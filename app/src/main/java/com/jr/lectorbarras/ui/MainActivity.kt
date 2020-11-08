@@ -16,37 +16,19 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
-    internal var txtName: TextView? = null
-
-    internal var txtSiteName: TextView? = null
 
     internal var btnScan: Button? = null
     internal var qrScanIntegrator: IntentIntegrator? = null
 
-    private var articuloModel: ArticuloResponse? = null
-
 
 
     val stock : String = ""
-    val hash : String = "3df76a7a956c427db7c76ccc8f2bce7e"
-    //private lateinit var editTextBuscar: EditText
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // val data = HashMap<String, String>()
-       // txtName = findViewById(R.id.name)
-        //txtSiteName = findViewById(R.id.site_name)
-        val intent = intent
-        //val data_param = intent.getSerializableExtra("data") as HashMap<String, String>
-//        val hash_param = intent.getSerializableExtra("hash") as String
-       // val code = "7798311170019"
-
-       // Log.i("data main" , data_param.toString())
-       // Log.i("data main" , hash_param.toString())
-
-
 
         btnScan = findViewById(R.id.btnScan)
         btnScan!!.setOnClickListener { performAction() }
@@ -66,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+        btnimagen.setOnClickListener { performAction() }
 
 
     }
@@ -89,10 +72,7 @@ class MainActivity : AppCompatActivity() {
                     // Converting the data to json format
                     val obj = JSONObject(result.contents)
 
-                    // Show values in UI.
-                    //tvstock?.text = obj.getString("Stock")
-                    //tvprecio?.text = obj.getString("precio")
-                    //tvprecio?.text = obj.getString("articulo")
+
 
                     val intent = Intent(this, ArticulosActivityRecyclerView::class.java)
                     intent.putExtra("code", obj.getString("code"))
@@ -105,10 +85,7 @@ class MainActivity : AppCompatActivity() {
                    // val obj = JSONObject(result.contents)
 
                     val intent = Intent(this, ArticulosActivityRecyclerView::class.java)
-                   // val intent = Intent(this, ResultadoActivity::class.java)
-                    //intent.putExtra("stock" , obj.getString("stock"))
-                    //intent.putExtra("precio" ,obj.getString("precio"))
-                    //intent.putExtra("articulo" ,obj.getString("articulo"))
+
                     intent.putExtra("code", result.contents)
                     startActivity(intent)
 

@@ -1,22 +1,19 @@
 package com.jr.lectorbarras.ui.login
 
+
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
-
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.ktx.Firebase
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.*
 import com.jr.lectorbarras.ui.MainActivity
-import okhttp3.Handshake.Companion.handshake
+import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,12 +39,23 @@ class LoginActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.WRAP_CONTENT))
 */
         //guardo el hash en un hsared preferences
+
+        ivsiskitlogo.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.siskit.com/")
+            )
+            val chooseIntent = Intent.createChooser(intent, "Choose from below")
+            startActivity(chooseIntent)
+        }
         val pref_save = SessionManager.getInstance(this@LoginActivity)
 
         //verificar hash si el hash no esta vacio
         if (pref_save.hash != ""){
             //verificar request
-            val verficarHash = RetrofitClientApi.getRetrofitInstance(this@LoginActivity).create(ApiInterfaceRequest::class.java)
+            val verficarHash = RetrofitClientApi.getRetrofitInstance(this@LoginActivity).create(
+                ApiInterfaceRequest::class.java
+            )
             verficarHash.verificarHash(pref_save.hash).enqueue(object :
                 Callback<VerificarHashResponse> {
                 override fun onResponse(
@@ -67,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                         //finish()
 
                     } else {
-                        pref_save.hash  = ""
+                        pref_save.hash = ""
                         Toast.makeText(
                             this@LoginActivity,
                             response.body()?.mensaje,
@@ -78,9 +86,9 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<VerificarHashResponse>, t: Throwable) {
-                    Log.i("VerificandoHash" , "paso por onFailure")
-                    pref_save.hash  = ""
-/*
+                    Log.i("VerificandoHash", "paso por onFailure")
+                    pref_save.hash = ""
+
                     Toast.makeText(
                         this@LoginActivity,
                         t.message,
@@ -88,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
 
                     FirebaseCrashlytics.getInstance().recordException(t)
-*/
+
 
                 }
             })
@@ -105,13 +113,6 @@ class LoginActivity : AppCompatActivity() {
             val ipserver = ipserver.text.toString().trim()
             val email = email.text.toString().trim()
             val password = password.text.toString().trim()
-            val mensaje = ""
-            val estado = ""
-            val data = HashMap<String, String>()
-            val nombre = ""
-
-
-
 
 
             //guardar ip server en shared preferences
@@ -119,7 +120,9 @@ class LoginActivity : AppCompatActivity() {
             pref_save.host = ipserver
             pref_save.email = email
 
-            val retIn = RetrofitClientApi.getRetrofitInstance(this@LoginActivity).create(ApiInterfaceRequest::class.java)
+            val retIn = RetrofitClientApi.getRetrofitInstance(this@LoginActivity).create(
+                ApiInterfaceRequest::class.java
+            )
             retIn.login(email, password).enqueue(object :
                 Callback<LoginResponse> {
                 override fun onResponse(
@@ -128,8 +131,8 @@ class LoginActivity : AppCompatActivity() {
 
                 ) {
 
-                    Log.i("onResponse" , "paso por onResponse")
-                    Log.i("Onresponse" , response.raw().toString())
+                    Log.i("onResponse", "paso por onResponse")
+                    Log.i("Onresponse", response.raw().toString())
 
 
                     if (response.body()?.estado == "ok") {
@@ -152,6 +155,7 @@ class LoginActivity : AppCompatActivity() {
                         intent.putExtra("hash", myNewHash)
                         //intent.putExtra("hash", myNewHash)
                         startActivity(intent)
+                        finish()
 
 
                     } else {
@@ -165,7 +169,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    Log.i("onFailure" , "paso por onFailure")
+                    Log.i("onFailure", "paso por onFailure")
                     Toast.makeText(
                         this@LoginActivity,
                         t.message,
@@ -180,18 +184,8 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-        /*override fun onStart() {
-        super.onStart()
-        Log.i("tag", SharedPrefManager.getInstance(this).isLoggedIn.toString() )
-        if(SharedPrefManager.getInstance(this).isLoggedIn){
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-            startActivity(intent)
-        }
-    }
-*/
-
 
     }
+
+
 }

@@ -38,10 +38,8 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
         initRecyclerView(recyclerView)
 
 
-
         Log.i("skttag", "ArticulosActivityRecyclerView@onCreate - levantando shared preferences")
         setMySharedPref()
-
 
         // Hace el request a barcode.php para consultar el codigo ingresado/leido
         initRequestBarCode()
@@ -56,6 +54,7 @@ class ArticulosActivityRecyclerView : AppCompatActivity() , ArticuloListener {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = ArticuloAdapater(articulosData, this@ArticulosActivityRecyclerView)
     }
+
 
     fun initRequestBarCode(){
         // Request de

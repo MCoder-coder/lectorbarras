@@ -8,8 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.ArticulosJson
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
+import java.util.*
 
-class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: ArticuloListener ): RecyclerView.Adapter<ArticuloAdapater.ViewHolder>(){
+class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: ArticuloListener): RecyclerView.Adapter<ArticuloAdapater.ViewHolder>(){
 
 
 
@@ -20,11 +24,14 @@ class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: A
     )
 
     override fun onBindViewHolder(holder: ArticuloAdapater.ViewHolder, position: Int) {
+        val nf = NumberFormat.getNumberInstance(Locale.getDefault())
+
+
         Log.i("tag adapter", "onBindViewHolder")
         val art = articulosList[position]
         holder.tvIdArticulo.text = art.nombre
         holder.tvCodeBarras.text = art.codbarras
-        holder.preciolista1.text = art.precio_lista_1.toString()
+        holder.preciolista1.text = "$" +nf.format(art.precio_lista_1)
         holder.stock.text =  art.stock.toString()
         holder.codigositema.text = art.cod_articulo
         holder.itemView.setOnClickListener {
@@ -32,10 +39,13 @@ class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: A
             artListenr.onArticulosClicked(art, position)
 
         }
+
+
     }
 
     override fun getItemCount(): Int {
         return articulosList.size
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -5,108 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ResultadoActivity"
-    android:layout_margin="0dp"
+
 
     >
 
 
     <TextView
         android:id="@+id/tvidarticulosdospuntos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
         android:text="@string/codigo_articulo"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/idArticulo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
         android:id="@+id/idArticulo"
         android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_margin="15dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="8dp"
         android:text="654654654"
-        android:textSize="16dp"
+        android:textSize="@dimen/textdescription"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/tvcodigobarrasdospuntos"
+        app:layout_constraintBottom_toBottomOf="@+id/tvidarticulosdospuntos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.914"
-        app:layout_constraintStart_toEndOf="@+id/tvidarticulosdospuntos" />
+        app:layout_constraintTop_toTopOf="@+id/tvidarticulosdospuntos" />
 
     <TextView
         android:id="@+id/tvpreciolista2dospuntos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="15dp"
         android:text="@string/precio_lista_2"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvpreciolista2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvpreciolista1dospuntos" />
 
     <TextView
         android:id="@+id/tvcodigobarrasdospuntos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
         android:text="@string/codigo_barras"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvcodigobarras"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvidarticulosdospuntos" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechActualizada" />
 
     <TextView
         android:id="@+id/tvpreciolista1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="14dp"
         android:text="@string/textview"
-        android:textSize="16sp"
+        android:textSize="@dimen/textdescription"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tvpreciolista1dospuntos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvpreciolista1dospuntos"
-        app:layout_constraintTop_toBottomOf="@+id/tvcodigobarras" />
+        app:layout_constraintTop_toTopOf="@+id/tvpreciolista1dospuntos"
+        app:layout_constraintVertical_bias="0.56" />
 
     <TextView
         android:id="@+id/tvpreciolista1dospuntos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="15dp"
         android:text="@string/precio_lista_1"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvpreciolista1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvcodigobarrasdospuntos" />
 
     <TextView
         android:id="@+id/tvpreciolista3dospuntos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="15dp"
         android:text="@string/precio_lista_3"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvpreciolista3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvpreciolista2dospuntos" />
 
@@ -115,57 +103,53 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="32dp"
+
+        android:layout_marginTop="5dp"
         android:text="@string/textview"
         android:textSize="16dp"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tvcodigobarrasdospuntos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvcodigobarrasdospuntos"
-        app:layout_constraintTop_toBottomOf="@+id/idArticulo" />
+        app:layout_constraintTop_toTopOf="@+id/tvcodigobarrasdospuntos" />
 
     <TextView
         android:id="@+id/tvpreciolista2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="12dp"
         android:text="@string/textview"
-        android:textSize="16dp"
+        android:textSize="@dimen/textdescription"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tvpreciolista2dospuntos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvpreciolista2dospuntos"
-        app:layout_constraintTop_toBottomOf="@+id/tvpreciolista1" />
+        app:layout_constraintTop_toTopOf="@+id/tvpreciolista2dospuntos"
+        app:layout_constraintVertical_bias="0.52" />
 
     <TextView
         android:id="@+id/tvpreciolista3"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="28dp"
         android:text="@string/textview"
-        android:textSize="16sp"
+        android:textSize="@dimen/textdescription"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tvpreciolista3dospuntos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvpreciolista3dospuntos"
-        app:layout_constraintTop_toBottomOf="@+id/tvpreciolista2" />
+        app:layout_constraintTop_toTopOf="@+id/tvpreciolista3dospuntos"
+        app:layout_constraintVertical_bias="0.56" />
 
     <TextView
         android:id="@+id/TvStockDosPuntos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="15dp"
         android:text="@string/stock"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvstock"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvpreciolista3dospuntos" />
 
@@ -174,44 +158,50 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="14dp"
         android:text="@string/fecha_actualizado"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvFecha"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TvStockDosPuntos" />
+        app:layout_constraintTop_toBottomOf="@+id/tvidarticulosdospuntos" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvnombre" />
 
     <TextView
         android:id="@+id/tvstock"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="28dp"
         android:text="@string/_5_unidades"
-        android:textSize="16sp"
+        android:textSize="@dimen/textdescription"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/TvStockDosPuntos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TvStockDosPuntos"
-        app:layout_constraintTop_toBottomOf="@+id/tvpreciolista3" />
+        app:layout_constraintTop_toTopOf="@+id/TvStockDosPuntos" />
 
     <TextView
         android:id="@+id/tvFecha"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:text="@string/stock"
-        android:textSize="16sp"
+        android:textSize="@dimen/textdescription"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFechActualizada"
         app:layout_constraintStart_toEndOf="@+id/tvFechActualizada"
-        app:layout_constraintTop_toBottomOf="@+id/tvstock" />
+        app:layout_constraintTop_toBottomOf="@+id/idArticulo" />
 
     <Button
         android:id="@+id/btnModificarStock"
@@ -219,50 +209,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="32dp"
-        android:elevation="45dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="247dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="111dp"
         android:background="@drawable/item_bg_button"
+        android:elevation="45dp"
         android:text="@string/modificar_stock"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/TvStockDosPuntos" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:text="@string/nombre"
-        android:textSize="@dimen/textsize"
+        android:textSize="@dimen/textnombre"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvidarticulosdospuntos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/tvnombre"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:text="TextView"
-        android:textSize="16dp"
+        android:textSize="@dimen/textnombretitulo"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/idArticulo"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

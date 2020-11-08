@@ -41,6 +41,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="82dp"
         android:layout_marginEnd="32dp"
+        android:textSize="@dimen/edit_Text"
         android:hint="@string/ingrese_cantidad"
         android:inputType="numberDecimal"
         android:textAlignment="center"

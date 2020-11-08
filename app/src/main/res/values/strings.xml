@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Siskit Stock APP</string>
     <string name="showing_code_in_fragment">Showing code in fragment</string>
-    <string name="scan_qr_code">SCAN</string>
+    <string name="scan_qr_code">Escanear Codigo</string>
     <string name="site_name">Site Name</string>
     <string name="scan_a_code">Scan a QR Code</string>
     <string name="result_not_found">Result Not Found</string>
@@ -11,7 +11,7 @@
     <string name="modificarstock">Modificar Stock</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign</string>
+    <string name="action_sign_in">Acceder/Ingresar</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>

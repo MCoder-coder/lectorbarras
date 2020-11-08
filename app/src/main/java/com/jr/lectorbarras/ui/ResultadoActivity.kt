@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_resultado.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
 
 class ResultadoActivity : AppCompatActivity() {
 
@@ -39,14 +41,16 @@ class ResultadoActivity : AppCompatActivity() {
         val stock = intent.getDoubleExtra("stock", 0.0)
         val price_updated_at = intent.getStringExtra("price_updated_at")
 
+        val nf = NumberFormat.getNumberInstance(Locale.getDefault())
         idArticulo.text = cod_articulo.toString()
         tvcodigobarras.text = codbarras
         tvstock.text = stock.toString()
-        tvpreciolista1.text = precio_lista_1.toString()
-        tvpreciolista2.text = precio_lista_2.toString()
-        tvpreciolista3.text = precio_lista_3.toString()
+        tvpreciolista1.text = "$" + nf.format( precio_lista_1)
+        tvpreciolista2.text = "$" + nf.format( precio_lista_2)
+        tvpreciolista3.text ="$" + nf.format( precio_lista_3)
         tvFecha.text = price_updated_at
         tvnombre.text= nombre
+
 
 
 

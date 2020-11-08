@@ -1,5 +1,6 @@
 package com.jr.lectorbarras.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,8 @@ import retrofit2.Response
 class ModificarStockActivity : AppCompatActivity(){
 
     lateinit var mySharedPref: SessionManager
+    var mycodebar = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,22 +46,10 @@ class ModificarStockActivity : AppCompatActivity(){
         val cantidad_actual = intent.getDoubleExtra("stock", 0.0)
 
         val id_articulo = intent.getIntExtra("id_articulo" , 0)
-   /*     val nombre = intent.getStringExtra("nombre")
-        val precio_lista_1 = intent.getDoubleExtra("precio_lista_1", 0.0)
-        val precio_lista_2 = intent.getDoubleExtra("precio_lista_2", 0.0)
-        val precio_lista_3 = intent.getDoubleExtra("precio_lista_3", 0.0)
+
         val codbarras = intent.getStringExtra("codbarras")
-        val stock = intent.getDoubleExtra("stock", 0.0)
-        val price_updated_at = intent.getStringExtra("price_updated_at")*/
+        this.mycodebar = codbarras!!
 
-
-
-
-    /*    val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-        var articulosData: List<ArticulosJson> = ArrayList()
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = ArticuloAdapater(articulosData, this)*/
         //paso la cantidad nueva del stock
         val cantidadNueva = editTextUnidades.text
         tvCodigoarticulo.text = cod_articulo
@@ -118,13 +109,22 @@ class ModificarStockActivity : AppCompatActivity(){
 
     }
 
-
     fun setMySharedPref() {
 
         this.mySharedPref = SessionManager.getInstance(this)
         //return this.mySharedPref;
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
 
+
+        val intent = Intent()
+        intent.putExtra("codigobarras", this.mycodebar)
+        setResult(Activity.RESULT_OK, intent)
+
+
+
+    }
 
 }
