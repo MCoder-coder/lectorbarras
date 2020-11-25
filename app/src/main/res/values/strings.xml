@@ -26,10 +26,11 @@
     <string name="modificar_stock">Modificar Stock</string>
     <string name="fecha_actualizado">Fecha Actualizado:</string>
 
-    <string name="precio_lista_3">Precio Lista 3:</string>
+    <string name="precio">Precio:</string>
     <string name="precio_lista_1">Precio Lista 1:</string>
-    <string name="codigo_barras">Codigo Barras:</string>
+    <string name="precio_lista_3">Precio Lista 3:</string>
     <string name="precio_lista_2">Precio Lista 2:</string>
+    <string name="codigo_barras">Codigo Barras:</string>
     <string name="buscar">Buscar</string>
     <string name="buscar_por_codigo_de_barras">Buscar por Codigo de Barras</string>
     <string name="codigo_sistema">codigo sistema</string>

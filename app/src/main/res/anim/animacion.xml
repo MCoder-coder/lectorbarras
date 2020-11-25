@@ -8,13 +8,13 @@
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
         android:duration="800"
         android:repeatMode="reverse"
-        android:repeatCount="4"/>
+        android:repeatCount="0"/>
     <scale
         android:duration="800"
         android:pivotX="50%"
         android:pivotY="50%"
         android:repeatMode="reverse"
-        android:repeatCount="4"
+        android:repeatCount="0"
         android:toXScale="110%"
         android:toYScale="110%"
         android:fromXScale="100%"
