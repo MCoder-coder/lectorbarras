@@ -14,7 +14,7 @@
         android:id="@+id/tvidarticulosdospuntos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/codigo_articulo"
         android:textSize="@dimen/textsize"
@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/precio_lista_2"
         android:textSize="@dimen/textsize"
@@ -52,20 +53,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="67dp"
         android:text="@string/codigo_barras"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFechActualizada" />
+        app:layout_constraintTop_toBottomOf="@+id/tvpreciolista3dospuntos" />
 
     <TextView
         android:id="@+id/tvpreciolista1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/textview"
         android:textSize="@dimen/textdescription"
         android:textStyle="italic"
@@ -79,18 +80,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="@string/precio_lista_1"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvcodigobarrasdospuntos" />
+        app:layout_constraintTop_toBottomOf="@+id/TvStockDosPuntos" />
 
     <TextView
         android:id="@+id/tvpreciolista3dospuntos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/precio_lista_3"
         android:textSize="@dimen/textsize"
@@ -105,6 +108,7 @@
         android:layout_margin="15dp"
 
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/textview"
         android:textSize="16dp"
         android:textStyle="italic"
@@ -117,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/textview"
         android:textSize="@dimen/textdescription"
         android:textStyle="italic"
@@ -131,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/textview"
         android:textSize="@dimen/textdescription"
         android:textStyle="italic"
@@ -145,26 +149,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="@string/stock"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvpreciolista3dospuntos" />
+        app:layout_constraintTop_toBottomOf="@+id/tvidarticulosdospuntos" />
 
     <TextView
         android:id="@+id/tvFechActualizada"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="94dp"
         android:text="@string/fecha_actualizado"
         android:textSize="@dimen/textsize"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvidarticulosdospuntos" />
+        app:layout_constraintTop_toBottomOf="@+id/tvcodigobarrasdospuntos" />
 
     <View
         android:id="@+id/view"
@@ -181,7 +185,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/_5_unidades"
         android:textSize="@dimen/textdescription"
         android:textStyle="italic"
@@ -191,17 +195,16 @@
 
     <TextView
         android:id="@+id/tvFecha"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/stock"
+        android:textAlignment="textEnd"
         android:textSize="@dimen/textdescription"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/tvFechActualizada"
-        app:layout_constraintStart_toEndOf="@+id/tvFechActualizada"
-        app:layout_constraintTop_toBottomOf="@+id/idArticulo" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvFechActualizada" />
 
     <Button
         android:id="@+id/btnModificarStock"
@@ -209,7 +212,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="143dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="111dp"
         android:background="@drawable/item_bg_button"
@@ -218,34 +221,22 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TvStockDosPuntos" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/nombre"
-        android:textSize="@dimen/textnombre"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechActualizada" />
 
 
     <TextView
         android:id="@+id/tvnombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:text="TextView"
         android:textSize="@dimen/textnombretitulo"
         android:textStyle="italic"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.365"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
