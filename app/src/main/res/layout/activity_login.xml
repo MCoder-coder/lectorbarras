@@ -35,7 +35,7 @@
 
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:text="www.nanod10.com.ar"
+        android:hint="Server Name o IP"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
 
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:text="nanod10@hotmail.com"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:text="123"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"

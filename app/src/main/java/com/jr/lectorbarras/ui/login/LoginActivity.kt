@@ -1,14 +1,20 @@
 package com.jr.lectorbarras.ui.login
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.Intent.ShortcutIconResource
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jr.lectorbarras.R
@@ -18,15 +24,20 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
 
 
+    @SuppressLint("NewApi")
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+
+
 
 
  /*       val crashButton = Button(this)
