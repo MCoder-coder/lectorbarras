@@ -1,5 +1,6 @@
 package com.jr.lectorbarras.data.model
 
+import SessionManager
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
@@ -50,8 +51,8 @@ class RetrofitClientApi {
 
         }.build()
 
-        fun getRetrofitInstance(appContext :  Context): Retrofit {
-            prefs = SessionManager.getInstance(appContext)
+        fun getRetrofitInstance(context: Context ): Retrofit {
+            prefs = SessionManager.getInstance(context)
             HOST = prefs.host;
 
             BASE_URL = PROTOCOL + HOST + API_PREFIX

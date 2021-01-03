@@ -40,6 +40,8 @@ class LoginActivity : AppCompatActivity() {
 
 
 
+
+
  /*       val crashButton = Button(this)
         crashButton.text = "Crash!"
         crashButton.setOnClickListener {
@@ -118,12 +120,25 @@ class LoginActivity : AppCompatActivity() {
 
                 }
             })
+
+            val email = findViewById<EditText>(R.id.username)
+            val password = findViewById<EditText>(R.id.password)
+            val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+            val login = findViewById<Button>(R.id.btnlogin)
+
+            val pref_save = SessionManager.getInstance(this@LoginActivity)
+
+            email.setText(pref_save.email)
+            ipserver.setText(pref_save.host)
+
+
         }
 
         val email = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.btnlogin)
         val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+        val login = findViewById<Button>(R.id.btnlogin)
+
 
         login.setOnClickListener {
 
@@ -163,7 +178,7 @@ class LoginActivity : AppCompatActivity() {
 
                         val myNewHash = response.body()!!.data.hash
                         // log (revisar)
-                        //Log.i("tag", "Hash: " + myNewHash);
+                        Log.i("tag", "Hash: " + myNewHash);
 
                         // guardar hash en SharedPreference
                         pref_save.hash = myNewHash

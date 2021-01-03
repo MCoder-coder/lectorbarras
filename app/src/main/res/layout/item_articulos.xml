@@ -7,8 +7,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:elevation="45dp"
+        android:layout_margin="2dp"
+
 
         >
 
@@ -36,23 +36,25 @@
                 android:layout_marginEnd="16dp"
                 android:text="Stock: "
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/tvstock"
-                app:layout_constraintTop_toTopOf="@+id/codigobarras" />
+                app:layout_constraintEnd_toStartOf="@+id/tvItemstock"
+                app:layout_constraintTop_toTopOf="@+id/tvItemcodigobarras" />
 
             <TextView
-                android:id="@+id/IdArticulo"
-                android:layout_width="0dp"
+                android:id="@+id/TvItemIdArticulo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="My Title" />
 
             <TextView
-                android:id="@+id/codigosistema"
+                android:id="@+id/tvItemcodigosistema"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -60,12 +62,12 @@
                 android:text="@string/codigo_sistema"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/IdArticulo">
+                app:layout_constraintTop_toBottomOf="@+id/TvItemIdArticulo">
 
             </TextView>
 
             <TextView
-                android:id="@+id/tvstock"
+                android:id="@+id/tvItemstock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -78,7 +80,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/preciolista1"
+                android:id="@+id/tvitempreciolista1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -97,11 +99,11 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/precio"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/preciolista1"
-                app:layout_constraintTop_toTopOf="@+id/codigosistema" />
+                app:layout_constraintEnd_toStartOf="@+id/tvitempreciolista1"
+                app:layout_constraintTop_toTopOf="@+id/tvItemcodigosistema" />
 
             <TextView
-                android:id="@+id/codigobarras"
+                android:id="@+id/tvItemcodigobarras"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -112,7 +114,7 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/codigosistema"
+                app:layout_constraintTop_toBottomOf="@+id/tvItemcodigosistema"
                 tools:text="This is Description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

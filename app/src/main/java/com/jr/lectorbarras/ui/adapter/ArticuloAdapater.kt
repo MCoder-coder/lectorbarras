@@ -13,7 +13,7 @@ import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.*
 
-class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: ArticuloListener): RecyclerView.Adapter<ArticuloAdapater.ViewHolder>(){
+class ArticuloAdapater( val articulosList: List<ArticulosJson>,  val artListenr: ArticuloListener): RecyclerView.Adapter<ArticuloAdapater.ViewHolder>(){
 
 
 
@@ -23,7 +23,7 @@ class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: A
         )
     )
 
-    override fun onBindViewHolder(holder: ArticuloAdapater.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nf = NumberFormat.getNumberInstance(Locale.getDefault())
 
 
@@ -50,11 +50,11 @@ class ArticuloAdapater(val articulosList: List<ArticulosJson>, val artListenr: A
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val tvIdArticulo = itemView.findViewById<TextView>(R.id.IdArticulo)
-        var tvCodeBarras = itemView.findViewById<TextView>(R.id.codigobarras)
-        val preciolista1 = itemView.findViewById<TextView>(R.id.preciolista1)
-        val stock = itemView.findViewById<TextView>(R.id.tvstock)
-        val codigositema = itemView.findViewById<TextView>(R.id.codigosistema)
+        val tvIdArticulo = itemView.findViewById<TextView>(R.id.TvItemIdArticulo)
+        var tvCodeBarras = itemView.findViewById<TextView>(R.id.tvItemcodigobarras)
+        val preciolista1 = itemView.findViewById<TextView>(R.id.tvitempreciolista1)
+        val stock = itemView.findViewById<TextView>(R.id.tvItemstock)
+        val codigositema = itemView.findViewById<TextView>(R.id.tvItemcodigosistema)
 
     }
 

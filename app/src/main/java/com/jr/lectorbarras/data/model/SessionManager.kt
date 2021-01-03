@@ -1,14 +1,14 @@
-package com.jr.lectorbarras.data.model
+
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class SessionManager private constructor(context: Context) {
-    private val prefs: SharedPreferences
-    private val editor:SharedPreferences.Editor
+class SessionManager private constructor(context: Context){
 
+    private val editor:SharedPreferences.Editor
+    var prefs: SharedPreferences
     init{
-        prefs = context.getSharedPreferences("api-config", Context.MODE_PRIVATE)
+        this.prefs = context.getSharedPreferences("api-config", Context.MODE_PRIVATE)
         editor = prefs.edit()
 
 
@@ -43,8 +43,11 @@ class SessionManager private constructor(context: Context) {
         }
 
 
+
+
+
     companion object {
-//        private val jInstance : SessionManager
+        //        private val jInstance : SessionManager
 //        @Synchronized fun getInstance(context:Context):SessionManager {
 //            if (jInstance != null)
 //            {
@@ -56,16 +59,16 @@ class SessionManager private constructor(context: Context) {
 //                return jInstance
 //            }
 //        }
-          fun getInstance(context:Context):SessionManager {
+        fun getInstance(context:Context):SessionManager {
 //            if (jInstance != null)
 //            {
-                return SessionManager(context)
+            return SessionManager(context)
 //            }
 //            else
 //            {
 //                jInstance = SessionManager(context)
 //                return jInstance
 //            }
-         }
+        }
     }
 }

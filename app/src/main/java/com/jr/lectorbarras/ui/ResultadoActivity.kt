@@ -11,7 +11,7 @@ import com.google.zxing.integration.android.IntentResult
 import com.jr.lectorbarras.R
 import com.jr.lectorbarras.data.model.ApiInterfaceRequest
 import com.jr.lectorbarras.data.model.RetrofitClientApi
-import com.jr.lectorbarras.data.model.SessionManager
+
 import com.jr.lectorbarras.data.model.VerificarHashResponse
 import kotlinx.android.synthetic.main.activity_resultado.*
 import retrofit2.Call

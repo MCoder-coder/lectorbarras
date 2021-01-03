@@ -47,7 +47,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:textSize="@dimen/edit_Text"
-        android:text="7798311170019"
+        
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
