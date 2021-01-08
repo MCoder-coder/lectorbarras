@@ -1,18 +1,21 @@
 package com.jr.lectorbarras.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
-import com.journeyapps.barcodescanner.CaptureActivity
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ArticuloResponse
+import com.jr.lectorbarras.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,6 +61,40 @@ class MainActivity : AppCompatActivity() {
         qrScanIntegrator?.initiateScan()
         //analizo con la camara el codigo de barras
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.bnv_menu , menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.terminar_sesion){
+
+
+
+            val pref_save = SessionManager.getInstance(this)
+            //val email = pref_save.email
+            //val host = pref_save.host
+            pref_save.hash = ""
+
+            val intent = Intent(this , LoginActivity::class.java)
+
+
+            startActivity(intent)
+
+
+
+
+
+            return true
+
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

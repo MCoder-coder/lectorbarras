@@ -39,6 +39,7 @@
             android:label="@string/resultado"
             android:screenOrientation="portrait" />
         <activity
+            android:persistent="true"
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait">
 

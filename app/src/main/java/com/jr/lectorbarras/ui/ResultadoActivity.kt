@@ -1,18 +1,24 @@
 package com.jr.lectorbarras.ui
 
+import SessionManager
+import SharedPrefManager
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.ApiInterfaceRequest
-import com.jr.lectorbarras.data.model.RetrofitClientApi
+import com.jr.lectorbarras.data.model.*
+import com.jr.lectorbarras.ui.adapter.ArticuloAdapater
 
-import com.jr.lectorbarras.data.model.VerificarHashResponse
+import kotlinx.android.synthetic.main.activity_articulos_recycler_view.*
+import kotlinx.android.synthetic.main.activity_modificar_stock.*
 import kotlinx.android.synthetic.main.activity_resultado.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,10 +29,16 @@ import java.util.*
 class ResultadoActivity : AppCompatActivity() {
 
     var mycodebar = ""
+    var articulosData: List<ArticulosJson> = ArrayList()
+    lateinit var Pref: SharedPrefManager
+    var code = ""
+    lateinit var sharedPrefManager : SharedPrefManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado)
+
+
 
         //obtengo lo datos del intent de articulos recyclerview
         val intent = intent
@@ -54,6 +66,12 @@ class ResultadoActivity : AppCompatActivity() {
 
 
 
+
+
+
+
+
+
         btnModificarStock.setOnClickListener {
             //paso los datos al modificar stock activity
             val intent = Intent(this, ModificarStockActivity::class.java)
@@ -67,24 +85,39 @@ class ResultadoActivity : AppCompatActivity() {
             intent.putExtra("codbarras", codbarras)
             intent.putExtra("stock", stock)
             intent.putExtra("price_updated_at", price_updated_at)
-            startActivity(intent)
+            //startActivity(intent)
+            var requestCode = 10
+            startActivityForResult(intent, requestCode)
+
 
 
         }
 
-
-
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK ){
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+            Log.i("onActivityResultModstk", "paso por aca")
+            finish()
+        }
+        Log.i("onActivityResultModstk", "paso por aca fin")
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
 
+        val pref = SharedPrefManager.getInstance(this)
 
         val intent = Intent()
         intent.putExtra("codigobarras", this.mycodebar)
         setResult(Activity.RESULT_OK, intent)
-        finish()
+        //finish()
+
+
+
 
 
     }

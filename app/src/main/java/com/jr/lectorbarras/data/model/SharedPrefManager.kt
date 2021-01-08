@@ -1,92 +1,41 @@
-/*
 
-
-
-//package com.jr.lectorbarras.data.model
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.jr.lectorbarras.R
+
+class SharedPrefManager private constructor(context: Context){
+
+    private val editor:SharedPreferences.Editor
+    var prefs: SharedPreferences
+    init{
+        this.prefs = context.getSharedPreferences("stockNuevo", Context.MODE_PRIVATE)
+        editor = prefs.edit()
+
+        editor.commit()
 
 
+    }
 
-
-
-
-
-
-
-class SharedPrefManager private constructor(private val mCtx: Context) {
-
-    val isLoggedIn: Boolean
+    var stock:Int
         get() {
-            val sharedPreferences =
-                mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-
+            return prefs.getInt("stock", 0)
         }
-
-    val user: LoginResponse
-        get() {
-            val sharedPreferences =
-                mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-
-
-
-  return LoginResponse()(
-
-                sharedPreferences.getString("email" , null).toString(),
-                sharedPreferences.getString("password", null).toString()
-            )
-
+        set(stock) {
+            editor.putInt("stock", stock)
+            editor.apply()
         }
 
 
 
 
-            fun saveUser(user: LoginJson) {
-
-                val sharedPreferences =
-                    mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
 
 
+    companion object {
 
-                editor.putString("email", user.hash)
-                editor.putString("password", user.nombre)
+        fun getInstance(context:Context): SharedPrefManager {
 
-
-
-
-                editor.apply()
-
-            }
-
-
-            fun clear() {
-                val sharedPreferences =
-                    mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.clear()
-                editor.apply()
-            }
-
-            companion object {
-                private val SHARED_PREF_NAME = "my_shared_preff"
-                private var mInstance: SharedPrefManager? = null
-
-                @Synchronized
-                fun getInstance(mCtx: Context): SharedPrefManager {
-                    if (mInstance == null) {
-                        mInstance = SharedPrefManager(mCtx)
-                    }
-                    return mInstance as SharedPrefManager
-                }
-            }
+            return SharedPrefManager(context)
 
         }
-
+    }
 }
-
-
-
-*/

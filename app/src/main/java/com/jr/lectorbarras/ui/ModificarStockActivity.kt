@@ -1,39 +1,36 @@
 package com.jr.lectorbarras.ui
 
+
 import SessionManager
+import SharedPrefManager
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
+import android.text.TextUtils
 import android.util.Log
-import android.view.View
-import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-
-
-
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.set
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.*
-import com.jr.lectorbarras.ui.adapter.ArticuloAdapater
-import com.jr.lectorbarras.ui.adapter.ArticuloListener
-import kotlinx.android.synthetic.main.activity_articulos_recycler_view.*
-import kotlinx.android.synthetic.main.activity_main.*
+import com.jr.lectorbarras.data.model.ApiInterfaceRequest
+import com.jr.lectorbarras.data.model.ModificarStockResponse
+import com.jr.lectorbarras.data.model.RetrofitClientApi
 import kotlinx.android.synthetic.main.activity_modificar_stock.*
 import kotlinx.android.synthetic.main.activity_resultado.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class ModificarStockActivity : AppCompatActivity(){
 
     lateinit var mySharedPref: SessionManager
     var mycodebar = ""
-
+    lateinit var sharedPrefManager : SharedPrefManager
+    var flagStockIsEdited = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +49,15 @@ class ModificarStockActivity : AppCompatActivity(){
         this.mycodebar = codbarras!!
 
         //paso la cantidad nueva del stock
-        val cantidadNueva = editTextUnidades.text
+        var cantidadNueva = editTextUnidades.text
         tvCodigoarticulo.text = cod_articulo
         tvCantidadUnidades.text = cantidad_actual.toString()
+
+
+
+        val pref = SharedPrefManager.getInstance(this)
+
+
 
 
 
@@ -70,7 +73,24 @@ class ModificarStockActivity : AppCompatActivity(){
                 ) {
 
 
-                    if (response.body()?.mensaje == "Stock Actualizado a: ${cantidadNueva}"){
+                    if (response.body()?.mensaje == "Stock Actualizado a: $cantidadNueva"){
+
+                        cantidadNueva.toString()
+
+                        val cantidadActualizada = cantidadNueva
+
+                        flagStockIsEdited = true
+
+
+
+                        //pref.stock = cantidadActualizada.toString().toInt()
+                        //tvCantidadUnidades.setText(cantidadNueva)
+                        //Log.i("tag" , pref.stock.toString())
+
+                        tvCantidadUnidades.setText(cantidadActualizada)
+
+                        Log.i("tag cantidad nueva", cantidadActualizada.toString())
+
                             Toast.makeText(
                                 this@ModificarStockActivity,
                                 response.body()?.mensaje,
@@ -78,7 +98,7 @@ class ModificarStockActivity : AppCompatActivity(){
                             ).show()
 
 
-
+                        onBackPressed()
 
                     }else{
                         Toast.makeText(
@@ -118,12 +138,20 @@ class ModificarStockActivity : AppCompatActivity(){
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-
 
         val intent = Intent()
         intent.putExtra("codigobarras", this.mycodebar)
-        setResult(Activity.RESULT_OK, intent)
+        intent.putExtra("flagStockIsEdited", flagStockIsEdited)
+
+        Log.i("tag flag : ", flagStockIsEdited.toString())
+
+        if(flagStockIsEdited) {
+            setResult(Activity.RESULT_OK, intent)
+        }else{
+            setResult(Activity.RESULT_CANCELED, intent)
+        }
+        super.onBackPressed()
+        finish()
 
 
 

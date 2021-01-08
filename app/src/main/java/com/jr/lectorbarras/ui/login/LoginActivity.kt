@@ -1,15 +1,13 @@
 package com.jr.lectorbarras.ui.login
 
 
+import SessionManager
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.Intent.ShortcutIconResource
-import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
-import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -18,13 +16,15 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jr.lectorbarras.R
-import com.jr.lectorbarras.data.model.*
+import com.jr.lectorbarras.data.model.ApiInterfaceRequest
+import com.jr.lectorbarras.data.model.LoginResponse
+import com.jr.lectorbarras.data.model.RetrofitClientApi
+import com.jr.lectorbarras.data.model.VerificarHashResponse
 import com.jr.lectorbarras.ui.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -36,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-
 
 
 
@@ -124,12 +123,29 @@ class LoginActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.username)
             val password = findViewById<EditText>(R.id.password)
             val ipserver = findViewById<EditText>(R.id.editxtipservidor)
-            val login = findViewById<Button>(R.id.btnlogin)
 
-            val pref_save = SessionManager.getInstance(this@LoginActivity)
 
+            val pref_save = SessionManager.getInstance(this)
+            val isLoggedIn: Boolean = pref_save.equals("isLoggedIn")
+
+            if (!isLoggedIn){
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                val hash2  = pref_save.hash
+                intent.putExtra("hash", hash2)
+                startActivity(intent)
+
+
+            }
+
+            val emailIntent =  intent.getStringExtra("email")
+            val hostIntent = intent.getStringExtra("host")
             email.setText(pref_save.email)
             ipserver.setText(pref_save.host)
+            Log.i("tag" , pref_save.email)
+
+            val hash = pref_save.hash
+
+
 
 
         }
@@ -220,5 +236,76 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
 
+        val email = findViewById<EditText>(R.id.username)
+        val password = findViewById<EditText>(R.id.password)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+
+        val pref_save = SessionManager.getInstance(this)
+        email.setText(pref_save.email)
+        ipserver.setText(pref_save.host )
+        super.onResume()
+    }
+
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+
+        val email = findViewById<EditText>(R.id.username)
+        val password = findViewById<EditText>(R.id.password)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+        val pref_save = SessionManager.getInstance(this)
+
+
+        email.setText(pref_save.email)
+        ipserver.setText(pref_save.host )
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onRestart() {
+
+        val email = findViewById<EditText>(R.id.username)
+        val password = findViewById<EditText>(R.id.password)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+        val pref_save = SessionManager.getInstance(this)
+
+        email.setText(pref_save.email)
+        ipserver.setText(pref_save.host)
+        super.onRestart()
+    }
+
+    override fun onDestroy() {
+        val email = findViewById<EditText>(R.id.username)
+        val password = findViewById<EditText>(R.id.password)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+        val pref_save = SessionManager.getInstance(this)
+
+        email.setText(pref_save.email)
+        ipserver.setText(pref_save.host)
+
+        super.onDestroy()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+
+        val email = findViewById<EditText>(R.id.username)
+        val password = findViewById<EditText>(R.id.password)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+        val pref_save = SessionManager.getInstance(this)
+        email.setText(pref_save.email)
+        ipserver.setText(pref_save.host)
+        super.onCreate(savedInstanceState, persistentState)
+    }
+
+    override fun onPause() {
+
+        val email = findViewById<EditText>(R.id.username)
+        val password = findViewById<EditText>(R.id.password)
+        val ipserver = findViewById<EditText>(R.id.editxtipservidor)
+        val pref_save = SessionManager.getInstance(this)
+
+        email.setText(pref_save.email)
+        ipserver.setText(pref_save.host)
+        super.onPause()
+    }
 }

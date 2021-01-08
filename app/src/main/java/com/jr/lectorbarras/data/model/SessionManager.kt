@@ -5,14 +5,21 @@ import android.content.SharedPreferences
 
 class SessionManager private constructor(context: Context){
 
-    private val editor:SharedPreferences.Editor
+    private var editor:SharedPreferences.Editor
     var prefs: SharedPreferences
+    private var mct: Context? = null
+
     init{
         this.prefs = context.getSharedPreferences("api-config", Context.MODE_PRIVATE)
         editor = prefs.edit()
+        editor.putBoolean("isLoggedIn", true);
+        editor.commit()
 
 
     }
+
+
+
 
     var host:String
         get() {
